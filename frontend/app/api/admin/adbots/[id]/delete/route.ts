@@ -11,6 +11,13 @@ export async function DELETE(
     const admin = await requireRole(request, ['ADMIN']);
     const { id: adbotId } = await params;
 
+    if (!supabaseAdmin) {
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     // Get adbot details for logging and operations
     const { data: adbot, error: fetchError } = await supabaseAdmin
       .from('adbots')

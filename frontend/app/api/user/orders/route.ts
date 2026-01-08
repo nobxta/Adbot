@@ -7,6 +7,13 @@ export async function GET(request: NextRequest) {
   try {
     const user = await requireAuth(request);
 
+    if (!user.userId) {
+      return NextResponse.json(
+        { error: 'User ID not found' },
+        { status: 400 }
+      );
+    }
+
     const orders = await listOrdersByUser(user.userId);
 
     return NextResponse.json({

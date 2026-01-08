@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     // Get adbot to calculate validity and stats
     const { data: adbotData } = await supabaseAdmin
       .from('adbots')
-      .select('valid_until, messages_sent, groups_reached, status, last_run, created_at')
+      .select('id, valid_until, messages_sent, groups_reached, status, last_run, created_at')
       .eq('user_id', userId)
       .eq('deleted_state', false)
       .order('created_at', { ascending: false })
@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
     // Get status from adbot or bot
     const status = adbotData?.status === 'ACTIVE' || adbotData?.status === 'RUNNING' 
       ? 'active' 
-      : (bot?.status || 'inactive');
+      : (bot?.plan_status === 'active' ? 'active' : 'inactive');
 
     return NextResponse.json({
       messagesSent,

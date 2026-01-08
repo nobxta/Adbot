@@ -11,7 +11,7 @@ import {
   createNotification,
 } from '@/lib/queries';
 import { autoAssignSessions } from '@/lib/stock';
-import { supabase } from '@/lib/supabase';
+import { supabase, supabaseAdmin } from '@/lib/supabase';
 
 // Webhook to receive payment status updates from NowPayments
 export async function POST(request: NextRequest) {

@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
 
         // Log activity before deletion (for audit trail)
         await logActivity({
-          action: 'PERMANENT_DELETE',
+          action: 'DELETE',
           entity_type: 'adbot',
           entity_id: adbot.id,
           details: {

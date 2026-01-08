@@ -13,6 +13,13 @@ export async function POST(
     const body = await request.json();
     const { reason } = body;
 
+    if (!supabaseAdmin) {
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     // Update adbot: Set frozen state and stop it
     const { data: adbot } = await supabaseAdmin
       .from('adbots')

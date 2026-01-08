@@ -19,15 +19,14 @@ export function NeuralNoise({ color = [0.9, 0.2, 0.4], opacity = 0.95, speed = 0
   useEffect(() => {
     const devicePixelRatio = Math.min(window.devicePixelRatio, 2);
     const gl = initShader();
-    if (!gl) return;
+    if (!gl || !uniformsRef.current) return;
     const cleanupEvents = setupEvents();
     resizeCanvas();
     const resizeListener = () => resizeCanvas();
     window.addEventListener('resize', resizeListener);
-    if (uniformsRef.current) {
-      gl.uniform3f(uniformsRef.current.u_color, color[0], color[1], color[2]);
-      gl.uniform1f(uniformsRef.current.u_speed, speed);
-    }
+    const webgl = gl as WebGLRenderingContext;
+    webgl.uniform3f(uniformsRef.current.u_color, color[0], color[1], color[2]);
+    webgl.uniform1f(uniformsRef.current.u_speed, speed);
     render();
     return () => {
       window.removeEventListener('resize', resizeListener);
@@ -93,7 +92,7 @@ export function NeuralNoise({ color = [0.9, 0.2, 0.4], opacity = 0.95, speed = 0
     `;
     const canvasEl = canvasRef.current;
     if (!canvasEl) return null;
-    const gl = canvasEl.getContext('webgl') || canvasEl.getContext('experimental-webgl');
+    const gl = (canvasEl.getContext('webgl') || canvasEl.getContext('experimental-webgl')) as WebGLRenderingContext | null;
     if (!gl) {
       console.error('WebGL not supported');
       return null;

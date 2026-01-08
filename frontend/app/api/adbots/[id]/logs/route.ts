@@ -5,11 +5,18 @@ import { getAdbotLogs } from '@/lib/python-backend';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await requireAuth(request);
-    const adbotId = params.id;
+    const { id: adbotId } = await params;
+
+    if (!user.userId) {
+      return NextResponse.json(
+        { error: 'User ID not found' },
+        { status: 400 }
+      );
+    }
 
     // Get adbot
     const adbot = await getAdbotById(adbotId);

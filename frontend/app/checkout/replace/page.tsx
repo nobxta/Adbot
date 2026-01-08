@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { ArrowLeft, CreditCard, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
@@ -14,7 +14,7 @@ const CRYPTOS = [
   { id: 'USDT', name: 'Tether', symbol: 'USDT' },
 ];
 
-export default function ReplaceAccountCheckout() {
+function ReplaceAccountCheckoutContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [bannedCount, setBannedCount] = useState(0);
@@ -358,6 +358,14 @@ export default function ReplaceAccountCheckout() {
         }
       `}</style>
     </div>
+  );
+}
+
+export default function ReplaceAccountCheckout() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ReplaceAccountCheckoutContent />
+    </Suspense>
   );
 }
 

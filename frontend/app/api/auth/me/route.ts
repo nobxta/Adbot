@@ -7,6 +7,13 @@ export async function GET(request: NextRequest) {
     // Require authentication
     const authUser = await requireAuth(request);
 
+    if (!authUser.userId) {
+      return NextResponse.json(
+        { error: 'User ID not found' },
+        { status: 400 }
+      );
+    }
+
     // Get full user details
     const user = await getUserById(authUser.userId);
 

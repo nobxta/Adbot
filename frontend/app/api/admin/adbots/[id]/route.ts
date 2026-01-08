@@ -45,7 +45,7 @@ export async function GET(
     };
 
     // Fetch bot data if bot_id exists - use admin client to bypass RLS
-    if (adbot.bot_id && supabaseAdmin) {
+    if (adbot.bot_id) {
       const { data: bot, error: botError } = await supabaseAdmin
         .from('bots')
         .select('id, bot_id, access_code, plan_type, plan_status, cycle_delay, expires_at, created_at')
@@ -64,7 +64,7 @@ export async function GET(
     }
 
     // Fetch user data with last login - use admin client to bypass RLS
-    if (adbot.user_id && supabaseAdmin) {
+    if (adbot.user_id) {
       const { data: user, error: userError } = await supabaseAdmin
         .from('users')
         .select('id, email, access_code, role, is_active, is_suspended, created_at, last_login')

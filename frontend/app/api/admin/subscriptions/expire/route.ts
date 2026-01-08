@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     // Find adbots that are expired but still marked as ACTIVE
     const { data: expiredAdbots, error: fetchError } = await supabaseAdmin
       .from('adbots')
-      .select('id, user_id, expires_at, subscription_status, expiry_notification_sent')
+      .select('id, user_id, expires_at, grace_expires_at, subscription_status, expiry_notification_sent')
       .eq('subscription_status', 'ACTIVE')
       .lt('expires_at', now.toISOString());
 
@@ -120,10 +120,11 @@ export async function POST(request: NextRequest) {
         // Log activity
         await logActivity({
           user_id: adbot.user_id,
-          action: 'SUBSCRIPTION_EXPIRED',
+          action: 'UPDATE',
           entity_type: 'adbot',
           entity_id: adbot.id,
           details: {
+            action: 'subscription_expired',
             expires_at: adbot.expires_at,
             subscription_status: 'EXPIRED',
           },

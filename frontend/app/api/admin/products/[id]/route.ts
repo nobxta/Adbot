@@ -6,11 +6,12 @@ import { supabase } from '@/lib/supabase';
 // PUT /api/admin/products/[id] - Update product
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const admin = await requireRole(request, ['ADMIN']);
     const body = await request.json();
+    const { id } = await params;
 
     const { name, description, type, plan_type, price, sessions_count, posting_interval_minutes, validity_days, is_active } = body;
 
@@ -30,7 +31,7 @@ export async function PUT(
         is_active: is_active !== undefined ? is_active : true,
         updated_at: new Date().toISOString(),
       })
-      .eq('id', params.id)
+      .eq('id', id)
       .select()
       .single();
 
@@ -42,7 +43,7 @@ export async function PUT(
       admin_id: admin.userId,
       action: 'UPDATE',
       entity_type: 'product',
-      entity_id: params.id,
+      entity_id: id,
       details: { name, type, plan_type, price },
     });
 
@@ -63,15 +64,16 @@ export async function PUT(
 // DELETE /api/admin/products/[id] - Delete product
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const admin = await requireRole(request, ['ADMIN']);
+    const { id } = await params;
 
     const { error } = await supabase
       .from('products')
       .delete()
-      .eq('id', params.id);
+      .eq('id', id);
 
     if (error) {
       throw error;
@@ -81,7 +83,7 @@ export async function DELETE(
       admin_id: admin.userId,
       action: 'DELETE',
       entity_type: 'product',
-      entity_id: params.id,
+      entity_id: id,
       details: {},
     });
 

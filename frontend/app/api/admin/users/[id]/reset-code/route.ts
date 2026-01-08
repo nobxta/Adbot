@@ -4,11 +4,11 @@ import { updateUser, logActivity } from '@/lib/queries';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const admin = await requireRole(request, ['ADMIN']);
-    const userId = params.id;
+    const { id: userId } = await params;
 
     // Get old access code for audit
     const { getUserById } = await import('@/lib/queries');

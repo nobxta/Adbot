@@ -400,13 +400,341 @@ This is an automated notification from HQAdz.
     },
   };
 
-  const template = templates[template];
-  if (!template) {
+  const templateData = templates[template];
+  if (!templateData) {
     throw new Error(`Unknown email template: ${template}`);
   }
 
   return {
-    html: template.html.trim(),
-    text: template.text.trim(),
+    html: templateData.html.trim(),
+    text: templateData.text.trim(),
   };
+}
+
+/**
+ * Send order confirmation email
+ */
+export async function sendOrderConfirmationEmail(params: {
+  email: string;
+  planName: string;
+  planType: string;
+  amount: number;
+  paymentId: string;
+  paymentAddress: string;
+  paymentAmount: string;
+  paymentCurrency: string;
+}): Promise<EmailResult> {
+  try {
+    const { email, planName, planType, amount, paymentId, paymentAddress, paymentAmount, paymentCurrency } = params;
+    
+    const html = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: #4F46E5; color: white; padding: 20px; text-align: center; }
+          .content { padding: 20px; background: #f9fafb; }
+          .payment-info { background: #fff; padding: 15px; border-radius: 6px; margin: 15px 0; border: 1px solid #e5e7eb; }
+          .footer { padding: 20px; text-align: center; color: #6b7280; font-size: 12px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>Order Confirmation</h1>
+          </div>
+          <div class="content">
+            <p>Hello,</p>
+            <p>Thank you for your order! Your payment request has been created.</p>
+            <div class="payment-info">
+              <p><strong>Plan:</strong> ${planName} (${planType})</p>
+              <p><strong>Amount:</strong> ${amount} ${paymentCurrency}</p>
+              <p><strong>Payment ID:</strong> ${paymentId}</p>
+              <p><strong>Payment Address:</strong> ${paymentAddress}</p>
+              <p><strong>Amount to Pay:</strong> ${paymentAmount} ${paymentCurrency}</p>
+            </div>
+            <p>Please complete the payment to activate your subscription.</p>
+          </div>
+          <div class="footer">
+            <p>This is an automated notification from HQAdz.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    const text = `
+Order Confirmation
+
+Hello,
+
+Thank you for your order! Your payment request has been created.
+
+Plan: ${planName} (${planType})
+Amount: ${amount} ${paymentCurrency}
+Payment ID: ${paymentId}
+Payment Address: ${paymentAddress}
+Amount to Pay: ${paymentAmount} ${paymentCurrency}
+
+Please complete the payment to activate your subscription.
+
+This is an automated notification from HQAdz.
+    `;
+
+    const provider = process.env.EMAIL_PROVIDER || 'smtp';
+    const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@hqadz.com';
+
+    switch (provider) {
+      case 'resend': {
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        if (!RESEND_API_KEY) {
+          return { success: false, error: 'RESEND_API_KEY not configured' };
+        }
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: FROM_EMAIL,
+            to: email,
+            subject: 'Order Confirmation - HQAdz',
+            html,
+            text,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`Resend API error: ${response.status}`);
+        }
+        const result = await response.json();
+        return { success: true, messageId: result.id };
+      }
+      case 'sendgrid': {
+        const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+        if (!SENDGRID_API_KEY) {
+          return { success: false, error: 'SENDGRID_API_KEY not configured' };
+        }
+        const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${SENDGRID_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            personalizations: [{ to: [{ email }] }],
+            from: { email: FROM_EMAIL },
+            subject: 'Order Confirmation - HQAdz',
+            content: [
+              { type: 'text/plain', value: text },
+              { type: 'text/html', value: html },
+            ],
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`SendGrid API error: ${response.status}`);
+        }
+        return { success: true, messageId: response.headers.get('x-message-id') || undefined };
+      }
+      case 'smtp':
+      default: {
+        const SMTP_HOST = process.env.SMTP_HOST;
+        const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
+        const SMTP_USER = process.env.SMTP_USER;
+        const SMTP_PASS = process.env.SMTP_PASS;
+        if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+          return { success: false, error: 'SMTP not configured' };
+        }
+        const nodemailer = await import('nodemailer');
+        const transporter = nodemailer.createTransport({
+          host: SMTP_HOST,
+          port: SMTP_PORT,
+          secure: SMTP_PORT === 465,
+          auth: {
+            user: SMTP_USER,
+            pass: SMTP_PASS,
+          },
+        });
+        const info = await transporter.sendMail({
+          from: FROM_EMAIL,
+          to: email,
+          subject: 'Order Confirmation - HQAdz',
+          html,
+          text,
+        });
+        return { success: true, messageId: info.messageId };
+      }
+    }
+  } catch (error) {
+    console.error('[Email] Failed to send order confirmation email:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
+}
+
+/**
+ * Send payment success email
+ */
+export async function sendPaymentSuccessEmail(params: {
+  email: string;
+  planName: string;
+  planType: string;
+  paymentId: string;
+  accessCode: string;
+  licenseKey: string;
+}): Promise<EmailResult> {
+  try {
+    const { email, planName, planType, paymentId, accessCode, licenseKey } = params;
+    
+    const html = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <style>
+          body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+          .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+          .header { background: #10B981; color: white; padding: 20px; text-align: center; }
+          .content { padding: 20px; background: #f9fafb; }
+          .info-box { background: #fff; padding: 15px; border-radius: 6px; margin: 15px 0; border: 1px solid #e5e7eb; }
+          .footer { padding: 20px; text-align: center; color: #6b7280; font-size: 12px; }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="header">
+            <h1>✅ Payment Successful!</h1>
+          </div>
+          <div class="content">
+            <p>Hello,</p>
+            <p>Your payment has been successfully processed and your AdBot is now ready to use!</p>
+            <div class="info-box">
+              <p><strong>Plan:</strong> ${planName} (${planType})</p>
+              <p><strong>Payment ID:</strong> ${paymentId}</p>
+              <p><strong>Access Code:</strong> ${accessCode}</p>
+              <p><strong>License Key:</strong> ${licenseKey}</p>
+            </div>
+            <p>You can now configure and start your adbot from your dashboard.</p>
+          </div>
+          <div class="footer">
+            <p>This is an automated notification from HQAdz.</p>
+          </div>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    const text = `
+Payment Successful!
+
+Hello,
+
+Your payment has been successfully processed and your AdBot is now ready to use!
+
+Plan: ${planName} (${planType})
+Payment ID: ${paymentId}
+Access Code: ${accessCode}
+License Key: ${licenseKey}
+
+You can now configure and start your adbot from your dashboard.
+
+This is an automated notification from HQAdz.
+    `;
+
+    const provider = process.env.EMAIL_PROVIDER || 'smtp';
+    const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@hqadz.com';
+
+    switch (provider) {
+      case 'resend': {
+        const RESEND_API_KEY = process.env.RESEND_API_KEY;
+        if (!RESEND_API_KEY) {
+          return { success: false, error: 'RESEND_API_KEY not configured' };
+        }
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: FROM_EMAIL,
+            to: email,
+            subject: 'Payment Successful - Your AdBot is Ready!',
+            html,
+            text,
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`Resend API error: ${response.status}`);
+        }
+        const result = await response.json();
+        return { success: true, messageId: result.id };
+      }
+      case 'sendgrid': {
+        const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
+        if (!SENDGRID_API_KEY) {
+          return { success: false, error: 'SENDGRID_API_KEY not configured' };
+        }
+        const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${SENDGRID_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            personalizations: [{ to: [{ email }] }],
+            from: { email: FROM_EMAIL },
+            subject: 'Payment Successful - Your AdBot is Ready!',
+            content: [
+              { type: 'text/plain', value: text },
+              { type: 'text/html', value: html },
+            ],
+          }),
+        });
+        if (!response.ok) {
+          throw new Error(`SendGrid API error: ${response.status}`);
+        }
+        return { success: true, messageId: response.headers.get('x-message-id') || undefined };
+      }
+      case 'smtp':
+      default: {
+        const SMTP_HOST = process.env.SMTP_HOST;
+        const SMTP_PORT = parseInt(process.env.SMTP_PORT || '587');
+        const SMTP_USER = process.env.SMTP_USER;
+        const SMTP_PASS = process.env.SMTP_PASS;
+        if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
+          return { success: false, error: 'SMTP not configured' };
+        }
+        const nodemailer = await import('nodemailer');
+        const transporter = nodemailer.createTransport({
+          host: SMTP_HOST,
+          port: SMTP_PORT,
+          secure: SMTP_PORT === 465,
+          auth: {
+            user: SMTP_USER,
+            pass: SMTP_PASS,
+          },
+        });
+        const info = await transporter.sendMail({
+          from: FROM_EMAIL,
+          to: email,
+          subject: 'Payment Successful - Your AdBot is Ready!',
+          html,
+          text,
+        });
+        return { success: true, messageId: info.messageId };
+      }
+    }
+  } catch (error) {
+    console.error('[Email] Failed to send payment success email:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error',
+    };
+  }
 }

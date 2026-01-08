@@ -166,6 +166,10 @@ export async function createPayment(paymentData: {
   user_id?: string;
   order_id?: string;
   product_id?: string;
+  payment_status?: string;
+  payment_address?: string;
+  payment_amount?: string | number;
+  payment_currency?: string;
 }): Promise<Payment | null> {
   if (!supabaseAdmin) {
     throw new Error('Supabase admin client not configured');

@@ -20,6 +20,13 @@ export async function POST(
       );
     }
 
+    if (!supabaseAdmin) {
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     // Get current adbot and product
     const { data: currentAdbot } = await supabaseAdmin
       .from('adbots')

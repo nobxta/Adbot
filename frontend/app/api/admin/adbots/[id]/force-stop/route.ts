@@ -12,6 +12,13 @@ export async function POST(
     const admin = await requireRole(request, ['ADMIN']);
     const { id: adbotId } = await params;
 
+    if (!supabaseAdmin) {
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     // Get current adbot status
     const { data: adbot } = await supabaseAdmin
       .from('adbots')

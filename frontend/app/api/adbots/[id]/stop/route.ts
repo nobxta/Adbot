@@ -11,6 +11,13 @@ export async function POST(
     const user = await requireAuth(request);
     const { id: adbotId } = await params;
 
+    if (!user.userId) {
+      return NextResponse.json(
+        { error: 'User ID not found' },
+        { status: 400 }
+      );
+    }
+
     // Get adbot
     const adbot = await getAdbotById(adbotId);
 

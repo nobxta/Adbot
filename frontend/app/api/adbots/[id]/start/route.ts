@@ -12,6 +12,13 @@ export async function POST(
     const user = await requireAuth(request);
     const { id: adbotId } = await params;
 
+    if (!user.userId) {
+      return NextResponse.json(
+        { error: 'User ID not found' },
+        { status: 400 }
+      );
+    }
+
     // Get adbot with all status fields including subscription status (use admin client to ensure we get all fields)
     const { data: adbot, error: adbotError } = await supabaseAdmin
       .from('adbots')
@@ -200,7 +207,8 @@ export async function POST(
 
     // CRITICAL: Sync execution_mode from adbot to Python backend user_data
     // This ensures Python backend has execution_mode before starting bot
-    const syncResult = await syncExecutionMode(adbot.user_id, adbot.execution_mode, backendToken);
+    try {
+      const syncResult = await syncExecutionMode(adbot.user_id, adbot.execution_mode, backendToken);
       if (!syncResult.success) {
         console.error('CRITICAL: Failed to sync execution_mode to Python backend:', syncResult.error);
         // Fail hard - execution_mode is required

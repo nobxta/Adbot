@@ -10,6 +10,13 @@ export async function GET(
     await requireRole(request, ['ADMIN']);
     const { id: adbotId } = await params;
 
+    if (!supabaseAdmin) {
+      return NextResponse.json(
+        { error: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     // Fetch activity logs for this adbot
     const { data: activities, error } = await supabaseAdmin
       .from('activity_logs')

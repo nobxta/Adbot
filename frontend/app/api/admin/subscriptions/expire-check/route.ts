@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
     // Step 2: Find adbots that are expired beyond grace period (need revocation)
     const { data: expiredBeyondGrace, error: expiredError } = await supabaseAdmin
       .from('adbots')
-      .select('id, user_id, valid_until, status, deleted_state')
+      .select('id, user_id, valid_until, status, deleted_state, deletion_notification_sent')
       .lt('valid_until', gracePeriodCutoff.toISOString())
       .in('status', ['ACTIVE', 'RUNNING', 'STOPPED'])
       .eq('deleted_state', false);
@@ -108,10 +108,11 @@ export async function POST(request: NextRequest) {
           // Log activity
           await logActivity({
             user_id: adbot.user_id,
-            action: 'SUBSCRIPTION_EXPIRED',
+            action: 'UPDATE',
             entity_type: 'adbot',
             entity_id: adbot.id,
             details: {
+              action: 'subscription_expired',
               valid_until: adbot.valid_until,
               grace_period_hours: gracePeriodHours,
               sessions_revoked: revocationResult.revoked,

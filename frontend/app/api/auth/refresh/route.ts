@@ -16,6 +16,13 @@ export async function POST(request: NextRequest) {
     // Verify refresh token
     const payload = await verifyRefreshToken(refreshToken);
 
+    if (!payload.userId || !payload.email) {
+      return NextResponse.json(
+        { error: 'Invalid token payload' },
+        { status: 401 }
+      );
+    }
+
     // Generate new access token
     const newAccessToken = await generateAccessToken({
       userId: payload.userId,

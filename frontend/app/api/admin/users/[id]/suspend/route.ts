@@ -4,11 +4,11 @@ import { suspendUser, logActivity } from '@/lib/queries';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const admin = await requireRole(request, ['ADMIN']);
-    const userId = params.id;
+    const { id: userId } = await params;
     const body = await request.json().catch(() => ({}));
     const suspend = body.suspend !== false; // Default to true
 

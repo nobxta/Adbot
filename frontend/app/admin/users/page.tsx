@@ -121,9 +121,9 @@ export default function UsersPage() {
 
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
-      user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
       user.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.access_code.toLowerCase().includes(searchTerm.toLowerCase());
+      (user.access_code?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false);
     return matchesSearch;
   });
 

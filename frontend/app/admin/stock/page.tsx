@@ -30,12 +30,12 @@ export default function StockPage() {
   // Session upload states
   const [uploadingSession, setUploadingSession] = useState(false);
   const [sessionFile, setSessionFile] = useState<File | null>(null);
-  const [sessionUploadStatus, setSessionUploadStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [sessionUploadStatus, setSessionUploadStatus] = useState<{ type: 'success' | 'error' | 'warning'; message: string } | null>(null);
   
   // Bulk session upload states
   const [uploadingBulkSessions, setUploadingBulkSessions] = useState(false);
   const [bulkSessionFile, setBulkSessionFile] = useState<File | null>(null);
-  const [bulkSessionUploadStatus, setBulkSessionUploadStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [bulkSessionUploadStatus, setBulkSessionUploadStatus] = useState<{ type: 'success' | 'error' | 'warning'; message: string } | null>(null);
   
   // API pair upload states
   const [uploadingApiPair, setUploadingApiPair] = useState(false);

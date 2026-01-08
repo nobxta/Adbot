@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { requireRole, generateAccessCode } from '@/lib/auth';
-import { createAdbot, logActivity, listUnusedSessions, assignSessionToAdbot } from '@/lib/queries';
+import { createAdbot, logActivity, listUnusedSessions, assignSessionToAdbot, createNotification } from '@/lib/queries';
 import { supabase, supabaseAdmin } from '@/lib/supabase';
 import { createBot } from '@/lib/bot-db';
 
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
     // Validate product exists and get details
     const { data: product, error: productError } = await supabase
       .from('products')
-      .select('id, name, sessions_count, posting_interval_minutes, plan_type')
+      .select('id, name, sessions_count, posting_interval_minutes, plan_type, validity_days')
       .eq('id', product_id)
       .single();
 
@@ -92,14 +92,6 @@ export async function POST(request: NextRequest) {
     // If email provided, use/create that user; otherwise create a minimal user
     let userId: string;
     
-    // Use admin client to bypass RLS policies
-    if (!supabaseAdmin) {
-      return NextResponse.json(
-        { error: 'Database admin client not configured' },
-        { status: 500 }
-      );
-    }
-
     // Helper function to generate unique access code
     const generateUniqueAccessCode = async (): Promise<string> => {
       let attempts = 0;

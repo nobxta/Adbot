@@ -1,27 +1,37 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Supabase configuration
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase environment variables are not set. Database operations will fail.');
-}
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-service-key';
 
 // Client for client-side operations (uses anon key)
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Admin client for server-side operations (uses service role key)
 // This bypasses Row Level Security (RLS) - use with caution
-export const supabaseAdmin = supabaseServiceKey
-  ? createClient(supabaseUrl, supabaseServiceKey, {
-      auth: {
-        autoRefreshToken: false,
-        persistSession: false,
-      },
-    })
-  : null;
+// Throws at runtime if env vars are missing (not during module initialization)
+function getSupabaseAdmin() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !serviceKey) {
+    throw new Error('NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set');
+  }
+  return createClient(url, serviceKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
+}
+
+// Lazy initialization - throws only when accessed, not during module load
+export const supabaseAdmin = new Proxy({} as ReturnType<typeof getSupabaseAdmin>, {
+  get(_target, prop) {
+    const admin = getSupabaseAdmin();
+    return (admin as any)[prop];
+  },
+});
 
 // Database types
 export interface User {
@@ -75,6 +85,14 @@ export interface Bot {
   updated_at: string;
   expires_at?: string; // Optional expiration
   last_login?: string; // Track last login
+  frozen_state?: boolean; // Bot frozen state
+  frozen_at?: string; // When bot was frozen
+  frozen_reason?: string; // Reason for freezing
+  suspended_at?: string; // When bot was suspended
+  suspend_reason?: string; // Reason for suspension
+  messages_sent?: number; // Total messages sent
+  groups_reached?: number; // Total groups reached
+  uptime_hours?: number; // Bot uptime in hours
 }
 
 // ============================================

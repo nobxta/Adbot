@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     await requireRole(request, ['ADMIN']);
 
     // Check Python backend health and get heartbeat data
-    let pythonBackend = { status: 'down', data: null, error: null };
+    let pythonBackend: { status: string; data: any; error: string | null } = { status: 'down', data: null, error: null };
     try {
       const response = await fetch(`${PYTHON_BACKEND_URL}/api/health`, {
         signal: AbortSignal.timeout(5000), // 5 second timeout
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check bot health from Python backend
-    let botHealth = { status: 'unknown', data: null };
+    let botHealth: { status: string; data: any } = { status: 'unknown', data: null };
     try {
       const response = await fetch(`${PYTHON_BACKEND_URL}/api/bot/health`, {
         signal: AbortSignal.timeout(5000),
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check database health
-    let database = { status: 'down', error: null };
+    let database: { status: string; error: string | null } = { status: 'down', error: null };
     try {
       const { error: dbError } = await supabase
         .from('users')

@@ -78,33 +78,31 @@ export async function POST(request: NextRequest) {
         isAdminUser = true;
         // For admin users, we still need to create/get their bot
         // Check if admin bot exists
-        if (supabaseAdmin) {
-          const { data: adminBot } = await supabaseAdmin
+        const { data: adminBot } = await supabaseAdmin
+          .from('bots')
+          .select('*')
+          .eq('owner_user_id', user.id)
+          .maybeSingle();
+        
+        if (adminBot) {
+          bot = adminBot as any;
+        } else {
+          // Create bot for admin user if it doesn't exist
+          const { data: newBot } = await supabaseAdmin
             .from('bots')
-            .select('*')
-            .eq('owner_user_id', user.id)
-            .maybeSingle();
+            .insert({
+              bot_id: user.id, // Use user id as bot_id for admins
+              access_code: user.access_code,
+              password_hash: user.password_hash || null,
+              plan_type: null, // Admins don't have plans
+              plan_status: 'active',
+              owner_user_id: user.id,
+            })
+            .select()
+            .single();
           
-          if (adminBot) {
-            bot = adminBot as any;
-          } else {
-            // Create bot for admin user if it doesn't exist
-            const { data: newBot } = await supabaseAdmin
-              .from('bots')
-              .insert({
-                bot_id: user.id, // Use user id as bot_id for admins
-                access_code: user.access_code,
-                password_hash: user.password_hash || null,
-                plan_type: null, // Admins don't have plans
-                plan_status: 'active',
-                owner_user_id: user.id,
-              })
-              .select()
-              .single();
-            
-            if (newBot) {
-              bot = newBot as any;
-            }
+          if (newBot) {
+            bot = newBot as any;
           }
         }
       }
@@ -122,8 +120,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // CRITICAL: Check subscription status for non-admin users
+    // Get owner user info if bot has owner_user_id (moved here for early use)
+    let email: string | undefined;
+    let role: 'ADMIN' | 'USER' | 'RESELLER' = 'USER';
+    
     if (bot && bot.owner_user_id && supabaseAdmin) {
+      const { data: owner, error: ownerError } = await supabaseAdmin
+        .from('users')
+        .select('id, email, role')
+        .eq('id', bot.owner_user_id)
+        .maybeSingle();
+      
+      if (ownerError) {
+        console.error('[verify-access-code] Error fetching owner user:', ownerError);
+      }
+      
+      if (owner) {
+        email = owner.email || undefined;
+        role = (owner.role?.toUpperCase() as 'ADMIN' | 'USER' | 'RESELLER') || 'USER';
+      }
+    } else if (user) {
+      email = user.email || undefined;
+      role = (user.role?.toUpperCase() as 'ADMIN' | 'USER' | 'RESELLER') || 'USER';
+    }
+
+    // CRITICAL: Check subscription status for non-admin users
+    if (bot && bot.owner_user_id) {
       // Find adbot linked to this bot
       const { data: adbot, error: adbotError } = await supabaseAdmin
         .from('adbots')
@@ -230,36 +252,6 @@ export async function POST(request: NextRequest) {
       await updateUser(user.id, { last_login: new Date().toISOString() });
     }
 
-    // Get owner user info if bot has owner_user_id
-    let ownerUser = null;
-    let email: string | undefined;
-    let role: 'ADMIN' | 'USER' | 'RESELLER' = 'USER';
-    
-    if (bot && bot.owner_user_id && supabaseAdmin) {
-      const { data: owner, error: ownerError } = await supabaseAdmin
-        .from('users')
-        .select('id, email, role')
-        .eq('id', bot.owner_user_id)
-        .maybeSingle();
-      
-      if (ownerError) {
-        console.error('[verify-access-code] Error fetching owner user:', ownerError);
-      }
-      
-      if (owner) {
-        ownerUser = owner;
-        email = owner.email || undefined;
-        role = (owner.role?.toUpperCase() as 'ADMIN' | 'USER' | 'RESELLER') || 'USER';
-        console.log('[verify-access-code] Owner user role:', role, 'from owner.role:', owner.role);
-      } else {
-        console.warn('[verify-access-code] No owner user found for bot, using default USER role');
-      }
-    } else if (user) {
-      email = user.email || undefined;
-      role = (user.role?.toUpperCase() as 'ADMIN' | 'USER' | 'RESELLER') || 'USER';
-      console.log('[verify-access-code] User role:', role, 'from user.role:', user.role);
-    }
-    
     console.log('[verify-access-code] Final role determined:', role);
 
     // Log activity (optional - won't fail if table doesn't exist)
@@ -267,7 +259,7 @@ export async function POST(request: NextRequest) {
       const entityId = bot ? bot.bot_id : (user?.id || '');
       const entityType = bot ? 'bot' : 'user';
       await logActivity({
-        user_id: ownerUser?.id || user?.id || '',
+        user_id: bot?.owner_user_id || user?.id || '',
         action: 'LOGIN',
         entity_type: entityType,
         entity_id: entityId,
@@ -281,7 +273,7 @@ export async function POST(request: NextRequest) {
 
     // Generate JWT tokens with bot_id (PRIMARY) and optional user_id
     const botId = bot ? bot.bot_id : (user?.id || '');
-    const userId = ownerUser?.id || user?.id || undefined;
+    const userId = bot?.owner_user_id || user?.id || undefined;
 
     const accessToken = await generateAccessToken({
       botId: botId,

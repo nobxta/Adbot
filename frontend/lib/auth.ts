@@ -319,13 +319,18 @@ export async function getBotIdFromRequest(request: Request): Promise<string | nu
 
 /**
  * Require authentication (throws if not authenticated)
+ * Returns payload with guaranteed userId (from botId if userId not present)
  */
-export async function requireAuth(request: Request): Promise<JWTPayload> {
+export async function requireAuth(request: Request): Promise<JWTPayload & { userId: string }> {
   const user = await getUserFromRequest(request);
   if (!user) {
     throw new Error('Unauthorized');
   }
-  return user;
+  // Guarantee userId exists - use botId if userId is missing
+  if (!user.userId) {
+    return { ...user, userId: user.botId };
+  }
+  return user as JWTPayload & { userId: string };
 }
 
 /**

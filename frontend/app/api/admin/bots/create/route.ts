@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate owner_user_id if provided
-    if (owner_user_id && supabaseAdmin) {
+    if (owner_user_id) {
       const { data: user } = await supabaseAdmin
         .from('users')
         .select('id')

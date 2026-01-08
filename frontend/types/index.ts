@@ -8,7 +8,7 @@ export type AdbotStatus = 'ACTIVE' | 'STOPPED' | 'EXPIRED' | 'SUSPENDED';
 export type SessionStatus = 'UNUSED' | 'ASSIGNED' | 'BANNED';
 export type PaymentStatus = 'PENDING' | 'COMPLETED' | 'FAILED' | 'EXPIRED';
 export type NotificationType = 'INFO' | 'WARNING' | 'ERROR' | 'SUCCESS' | 'PROMOTION';
-export type ActivityAction = 'LOGIN' | 'LOGOUT' | 'CREATE' | 'UPDATE' | 'DELETE' | 'START' | 'STOP' | 'PURCHASE';
+export type ActivityAction = 'LOGIN' | 'LOGOUT' | 'CREATE' | 'UPDATE' | 'DELETE' | 'START' | 'STOP' | 'PURCHASE' | 'PERMANENT_DELETE' | 'QUEUE_PASS_FAILED' | 'QUEUE_PASS_PARTIAL' | 'QUEUE_PASS_SUCCESS' | 'QUEUE_RESOLVED' | 'SUBSCRIPTION_EXPIRED' | 'PRE_EXPIRY_NOTIFICATION_SENT';
 
 // ============================================
 // USER & AUTH
@@ -60,6 +60,7 @@ export interface Product {
   type: 'ADBOT_PLAN' | 'SESSION_PACK' | 'REPLACEMENT';
   plan_type?: 'STARTER' | 'ENTERPRISE' | null;
   price: number;
+  price_weekly?: number; // Optional weekly price for enterprise plans
   sessions_count: number;
   posting_interval_minutes: number;
   posting_interval_seconds?: number;

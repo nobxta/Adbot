@@ -38,12 +38,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Update bot status in Supabase (for stats/analytics)
-    const bot = await updateBotByUserId(userId, {
-      status: action,
-      last_activity: new Date().toISOString(),
-    });
-
     return NextResponse.json({
       success: true,
       status: action,

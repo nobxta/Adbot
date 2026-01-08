@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireRole } from '@/lib/auth';
-import { listUsers, suspendUser, updateUser, generateAccessCode, logActivity } from '@/lib/queries';
+import { requireRole, generateAccessCode } from '@/lib/auth';
+import { listUsers, suspendUser, updateUser, logActivity } from '@/lib/queries';
 
 // GET /api/admin/users - List all users
 export async function GET(request: NextRequest) {

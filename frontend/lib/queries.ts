@@ -361,7 +361,6 @@ export async function createAdbot(data: {
   
   const { data: adbot, error } = await supabase
     .from('adbots')
-    .select()
     .insert([insertData])
     .select()
     .single();
@@ -644,8 +643,8 @@ export async function assignSessionToAdbot(sessionId: string, adbotId: string, a
       .update({
         status: 'INVALID_FILE',
       })
-      .eq('id', sessionId)
-      .catch(() => {}); // Silent fail on update
+      .eq('id', sessionId);
+    // Silent fail on update - ignore errors
 
     throw error;
   }

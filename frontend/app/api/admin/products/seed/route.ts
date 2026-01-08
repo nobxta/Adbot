@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       try {
         // Store weekly price in description for enterprise plans
         let description = plan.description;
-        if (plan.price_weekly) {
+        if ('price_weekly' in plan && plan.price_weekly) {
           description += ` | Weekly: $${plan.price_weekly}`;
         }
 

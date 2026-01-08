@@ -117,10 +117,11 @@ export async function POST(request: NextRequest) {
       // Log the failed pass attempt
       await logActivity({
         admin_id: admin.userId || admin.botId,
-        action: 'QUEUE_PASS_FAILED',
+        action: 'UPDATE',
         entity_type: 'adbot',
         entity_id: adbot_id,
         details: {
+          action: 'queue_pass_failed',
           required_sessions: requiredSessions,
           current_assigned: currentAssigned,
           available_sessions: availableCount,
@@ -217,10 +218,11 @@ export async function POST(request: NextRequest) {
 
       await logActivity({
         admin_id: admin.userId || admin.botId,
-        action: 'QUEUE_PASS_PARTIAL',
+        action: 'UPDATE',
         entity_type: 'adbot',
         entity_id: adbot_id,
         details: {
+          action: 'queue_pass_partial',
           required_sessions: requiredSessions,
           assigned_sessions: finalAssignedCount,
           missing_sessions: finalMissingCount,
@@ -271,10 +273,11 @@ export async function POST(request: NextRequest) {
     // Log successful resolution
     await logActivity({
       admin_id: admin.userId || admin.botId,
-      action: 'QUEUE_PASS_SUCCESS',
+      action: 'UPDATE',
       entity_type: 'adbot',
       entity_id: adbot_id,
       details: {
+        action: 'queue_pass_success',
         required_sessions: requiredSessions,
         assigned_sessions: finalAssignedCount,
         method: 'manual_pass',

@@ -37,7 +37,6 @@ import {
   Plus,
   Minus,
 } from 'lucide-react';
-import { startAdbot, stopAdbot } from '@/lib/python-backend';
 import AdbotManagementModal from '@/components/admin/AdbotManagementModal';
 
 interface AdbotDetail {
@@ -178,7 +177,14 @@ export default function AdbotDetailPage() {
   const handleStart = async () => {
     if (!adbot) return;
     try {
-      const result = await startAdbot(adbot.id);
+      const token = localStorage.getItem('accessToken');
+      const response = await fetch(`/api/admin/adbots/${adbotId}/force-start`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      const result = await response.json();
       if (result.success) {
         await fetchAdbot();
       } else {
@@ -193,7 +199,14 @@ export default function AdbotDetailPage() {
   const handleStop = async () => {
     if (!adbot) return;
     try {
-      const result = await stopAdbot(adbot.id);
+      const token = localStorage.getItem('accessToken');
+      const response = await fetch(`/api/admin/adbots/${adbotId}/force-stop`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      const result = await response.json();
       if (result.success) {
         await fetchAdbot();
       } else {

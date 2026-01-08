@@ -11,6 +11,13 @@ export async function POST(request: NextRequest) {
   try {
     const user = await requireAuth(request);
 
+    if (!user.userId) {
+      return NextResponse.json(
+        { error: 'User ID not found' },
+        { status: 400 }
+      );
+    }
+
     const body = await request.json();
     const { adbot_id, product_id, currency = 'USD' } = body;
 
@@ -87,7 +94,6 @@ export async function POST(request: NextRequest) {
       user_id: user.userId,
       product_id: product.id,
       total_amount: product.price,
-      status: 'PENDING',
     });
 
     // Step 5: Create payment request

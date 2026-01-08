@@ -116,7 +116,7 @@ export async function POST(
     // Update adbot sessions_assigned count
     const { data: adbot } = await supabase
       .from('adbots')
-      .select('sessions_assigned, status, required_sessions, missing_sessions_count')
+      .select('sessions_assigned, status, required_sessions, missing_sessions_count, queued_reason, queued_at')
       .eq('id', adbotId)
       .single();
 

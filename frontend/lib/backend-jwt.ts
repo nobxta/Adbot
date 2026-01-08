@@ -6,7 +6,7 @@
 
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || process.env.SUPABASE_JWT_SECRET || 'your-secret-key';
+const JWT_SECRET: string = process.env.JWT_SECRET || process.env.SUPABASE_JWT_SECRET || 'your-secret-key';
 
 /**
  * Generate JWT token for Python backend
@@ -40,6 +40,6 @@ export function generateBackendJWT(
   return jwt.sign(payload, JWT_SECRET, {
     algorithm: 'HS256',
     expiresIn,
-  });
+  } as jwt.SignOptions);
 }
 

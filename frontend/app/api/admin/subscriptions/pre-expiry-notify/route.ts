@@ -103,10 +103,11 @@ export async function POST(request: NextRequest) {
         // Log activity
         await logActivity({
           user_id: adbot.user_id,
-          action: 'PRE_EXPIRY_NOTIFICATION_SENT',
+          action: 'UPDATE',
           entity_type: 'adbot',
           entity_id: adbot.id,
           details: {
+            action: 'pre_expiry_notification_sent',
             expires_at: adbot.expires_at,
             hours_until_expiry: hoursUntilExpiry,
           },
