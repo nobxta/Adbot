@@ -1,0 +1,1152 @@
+2025-12-24 01:14:15,908 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getMe "HTTP/1.1 200 OK"
+2025-12-24 01:14:15,910 - __main__ - INFO - Controller bot started. Press Ctrl+C to stop.
+2025-12-24 01:14:16,079 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/deleteWebhook "HTTP/1.1 200 OK"
+2025-12-24 01:14:16,082 - telegram.ext.Application - INFO - Application started
+2025-12-24 01:14:20,534 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:14:20,875 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-12-24 01:14:20,877 - __main__ - INFO - Adbot worker started by controller
+2025-12-24 01:14:20,879 - __main__ - INFO - Found 8 session files
+2025-12-24 01:14:20,879 - __main__ - INFO - Initializing 8 clients...
+2025-12-24 01:14:21,256 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/editMessageText "HTTP/1.1 400 Bad Request"
+2025-12-24 01:14:21,258 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_application.py", line 1315, in process_update
+    await coroutine
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_handlers\basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 3603, in button_callback
+    await query.edit_message_text(status_msg, reply_markup=reply_markup, disable_web_page_preview=True)
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_callbackquery.py", line 268, in edit_message_text
+    return await self._get_message().edit_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_message.py", line 4142, in edit_text
+    return await self.get_bot().edit_message_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 1735, in edit_message_text
+    return await super().edit_message_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4463, in edit_message_text
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 634, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 819, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.BadRequest: Message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2025-12-24 01:14:21,859 - __main__ - INFO - Initialized client for session +254708803721 (disconnected)
+2025-12-24 01:14:22,937 - __main__ - INFO - Initialized client for session +254727162683 (disconnected)
+2025-12-24 01:14:23,888 - __main__ - INFO - Initialized client for session +254741795774 (disconnected)
+2025-12-24 01:14:24,979 - __main__ - INFO - Initialized client for session +254742982807 (disconnected)
+2025-12-24 01:14:26,041 - __main__ - INFO - Initialized client for session +254758678951 (disconnected)
+2025-12-24 01:14:26,986 - __main__ - INFO - Initialized client for session +254768741010 (disconnected)
+2025-12-24 01:14:28,051 - __main__ - INFO - Initialized client for session +254799668603 (disconnected)
+2025-12-24 01:14:28,515 - __main__ - INFO - Initialized client for session 917488156157 (disconnected)
+2025-12-24 01:14:28,515 - __main__ - INFO - Successfully initialized 8 clients
+2025-12-24 01:14:28,515 - __main__ - INFO - Account 1: 10 groups assigned
+2025-12-24 01:14:28,516 - __main__ - INFO - Account 2: 10 groups assigned
+2025-12-24 01:14:28,516 - __main__ - INFO - Account 3: 9 groups assigned
+2025-12-24 01:14:28,516 - __main__ - INFO - Account 4: 9 groups assigned
+2025-12-24 01:14:28,516 - __main__ - INFO - Account 5: 9 groups assigned
+2025-12-24 01:14:28,516 - __main__ - INFO - Account 6: 9 groups assigned
+2025-12-24 01:14:28,516 - __main__ - INFO - Account 7: 9 groups assigned
+2025-12-24 01:14:28,516 - __main__ - INFO - Account 8: 9 groups assigned
+2025-12-24 01:14:29,269 - __main__ - INFO - Found 8 session files
+2025-12-24 01:14:29,269 - __main__ - INFO - Checking 8 sessions for frozen/unauthorized status...
+2025-12-24 01:14:30,731 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:14:31,742 - __main__ - INFO - Account 1: ACTIVE - Starting worker
+2025-12-24 01:14:33,855 - __main__ - INFO - Account 2: ACTIVE - Starting worker
+2025-12-24 01:14:36,054 - __main__ - INFO - Account 3: ACTIVE - Starting worker
+2025-12-24 01:14:38,125 - __main__ - INFO - Account 4: ACTIVE - Starting worker
+2025-12-24 01:14:40,060 - __main__ - WARNING - Account 5: FROZEN - Skipping worker
+2025-12-24 01:14:40,925 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:14:42,326 - __main__ - INFO - Account 6: ACTIVE - Starting worker
+2025-12-24 01:14:44,569 - __main__ - INFO - Account 7: ACTIVE - Starting worker
+2025-12-24 01:14:45,518 - __main__ - INFO - Account 8: ACTIVE - Starting worker
+2025-12-24 01:14:45,518 - __main__ - INFO - Found 7 active sessions, 1 skipped
+2025-12-24 01:14:45,518 - __main__ - INFO - Starting 7 worker processes for parallel posting...
+2025-12-24 01:14:45,518 - __main__ - INFO - Spawning worker 1: +254708803721.session with 10 groups
+2025-12-24 01:14:47,046 - __main__ - INFO - Spawning worker 2: +254727162683.session with 10 groups
+2025-12-24 01:14:47,756 - __mp_main__ - ERROR - REAL ERROR [Account 1 - RETRY LOOP]: ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+
+
+================================================================================
+REAL ERROR [Account 1 - POST]: ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+
+================================================================================
+2025-12-24 01:14:47,758 - __mp_main__ - ERROR - REAL ERROR [Account 1 - POST]: ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+
+2025-12-24 01:14:48,368 - __main__ - INFO - Spawning worker 3: +254741795774.session with 9 groups
+2025-12-24 01:14:49,097 - __mp_main__ - ERROR - REAL ERROR [Account 2 - RETRY LOOP]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+
+================================================================================
+REAL ERROR [Account 2 - POST]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+================================================================================
+2025-12-24 01:14:49,098 - __mp_main__ - ERROR - REAL ERROR [Account 2 - POST]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+2025-12-24 01:14:50,364 - __main__ - INFO - Spawning worker 4: +254742982807.session with 9 groups
+2025-12-24 01:14:51,120 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:14:52,185 - __main__ - INFO - Spawning worker 6: +254768741010.session with 9 groups
+2025-12-24 01:14:52,579 - __mp_main__ - ERROR - REAL ERROR [Account 4 - RETRY LOOP]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+
+================================================================================
+REAL ERROR [Account 4 - POST]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+================================================================================
+2025-12-24 01:14:52,581 - __mp_main__ - ERROR - REAL ERROR [Account 4 - POST]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+2025-12-24 01:14:53,590 - __main__ - INFO - Spawning worker 7: +254799668603.session with 9 groups
+2025-12-24 01:14:54,669 - __main__ - INFO - Spawning worker 8: 917488156157.session with 9 groups
+2025-12-24 01:14:56,059 - __mp_main__ - ERROR - REAL ERROR [Account 8 - RETRY LOOP]: ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1009, in forward_messages
+    entity = await self.get_input_entity(entity)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 468, in get_input_entity
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+
+
+================================================================================
+REAL ERROR [Account 8 - POST]: ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1009, in forward_messages
+    entity = await self.get_input_entity(entity)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 468, in get_input_entity
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+
+================================================================================
+2025-12-24 01:14:56,060 - __mp_main__ - ERROR - REAL ERROR [Account 8 - POST]: ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1009, in forward_messages
+    entity = await self.get_input_entity(entity)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 468, in get_input_entity
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+
+2025-12-24 01:14:56,293 - __main__ - INFO - Batched Telegram log sender initialized
+2025-12-24 01:14:59,211 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:15:01,314 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:15:07,301 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:15:11,511 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:15:17,663 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:15:19,932 - __mp_main__ - ERROR - REAL ERROR [Account 3 - RETRY LOOP]: ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+
+
+================================================================================
+REAL ERROR [Account 3 - POST]: ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+
+================================================================================
+2025-12-24 01:15:19,934 - __mp_main__ - ERROR - REAL ERROR [Account 3 - POST]: ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatRestrictedError: The chat is restricted and cannot be used in that request (caused by ForwardMessagesRequest)
+
+2025-12-24 01:15:21,706 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:15:25,133 - __mp_main__ - ERROR - REAL ERROR [Account 7 - RETRY LOOP]: UserBannedInChannelError: You're banned from sending messages in supergroups/channels (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.UserBannedInChannelError: You're banned from sending messages in supergroups/channels (caused by ForwardMessagesRequest)
+
+
+================================================================================
+REAL ERROR [Account 7 - POST]: UserBannedInChannelError: You're banned from sending messages in supergroups/channels (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.UserBannedInChannelError: You're banned from sending messages in supergroups/channels (caused by ForwardMessagesRequest)
+
+================================================================================
+2025-12-24 01:15:25,134 - __mp_main__ - ERROR - REAL ERROR [Account 7 - POST]: UserBannedInChannelError: You're banned from sending messages in supergroups/channels (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.UserBannedInChannelError: You're banned from sending messages in supergroups/channels (caused by ForwardMessagesRequest)
+
+2025-12-24 01:15:26,070 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:15:26,807 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:15:29,048 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:15:36,267 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:15:40,851 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:15:43,851 - __mp_main__ - ERROR - REAL ERROR [Account 6 - RETRY LOOP]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+
+================================================================================
+REAL ERROR [Account 6 - POST]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+================================================================================
+2025-12-24 01:15:43,853 - __mp_main__ - ERROR - REAL ERROR [Account 6 - POST]: ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2612, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.ChatWriteForbiddenError: You can't write in this chat (caused by ForwardMessagesRequest)
+
+2025-12-24 01:15:46,464 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:15:56,661 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:16:06,859 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:16:17,053 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:16:27,248 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:16:37,444 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:16:47,639 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:16:57,834 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:16:58,650 - __main__ - INFO - Received signal 2. Initiating graceful shutdown...
+2025-12-24 01:16:58,650 - __main__ - INFO - Shutdown signal received
+2025-12-24 01:16:58,650 - __main__ - INFO - Cleaning up resources...
+2025-12-24 01:16:58,651 - __main__ - INFO - Stopping worker task...
+2025-12-24 01:16:58,651 - __main__ - INFO - Flushing remaining logs...
+2025-12-24 01:16:58,651 - __main__ - INFO - Waiting for worker processes to finish...
+2025-12-24 01:17:08,662 - __main__ - INFO - Received signal 2. Initiating graceful shutdown...
+2025-12-24 01:17:08,662 - __main__ - WARNING - Worker 24432 did not terminate, forcing...
+2025-12-24 01:17:18,682 - __main__ - WARNING - Worker 25500 did not terminate, forcing...
+2025-12-24 01:17:28,692 - __main__ - WARNING - Worker 10388 did not terminate, forcing...
+2025-12-24 01:17:38,705 - __main__ - WARNING - Worker 12248 did not terminate, forcing...
+2025-12-24 01:17:48,725 - __main__ - WARNING - Worker 18360 did not terminate, forcing...
+2025-12-24 01:17:58,739 - __main__ - WARNING - Worker 24672 did not terminate, forcing...
+2025-12-24 01:18:08,750 - __main__ - WARNING - Worker 14472 did not terminate, forcing...
+2025-12-24 01:18:08,761 - __main__ - INFO - All worker processes terminated
+2025-12-24 01:18:08,761 - __main__ - INFO - Adbot worker cancelled
+2025-12-24 01:18:08,899 - __main__ - INFO - Shutting down controller bot...
+2025-12-24 01:18:08,899 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-12-24 01:18:08,899 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:18:08,901 - telegram.ext.Application - INFO - Application.stop() complete
+2025-12-24 01:18:08,903 - __main__ - ERROR - Error shutting down controller bot: This Updater is still running!
+2025-12-24 01:18:08,903 - __main__ - INFO - Cleanup complete
+2025-12-24 01:18:08,903 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 254, in do_request
+    raise RuntimeError("This HTTPXRequest is not initialized!")
+RuntimeError: This HTTPXRequest is not initialized!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 134, in network_retry_loop
+    await do_action()
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 127, in do_action
+    action_cb_task.result()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 676, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4780, in get_updates
+    await self._post(
+    ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    ),
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 317, in _request_wrapper
+    raise NetworkError(f"Unknown error in HTTP implementation: {exc!r}") from exc
+telegram.error.NetworkError: Unknown error in HTTP implementation: RuntimeError('This HTTPXRequest is not initialized!')
+2025-12-24 01:18:09,919 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 254, in do_request
+    raise RuntimeError("This HTTPXRequest is not initialized!")
+RuntimeError: This HTTPXRequest is not initialized!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 134, in network_retry_loop
+    await do_action()
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 127, in do_action
+    action_cb_task.result()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 676, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4780, in get_updates
+    await self._post(
+    ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    ),
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 317, in _request_wrapper
+    raise NetworkError(f"Unknown error in HTTP implementation: {exc!r}") from exc
+telegram.error.NetworkError: Unknown error in HTTP implementation: RuntimeError('This HTTPXRequest is not initialized!')
+2025-12-24 01:18:11,427 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 254, in do_request
+    raise RuntimeError("This HTTPXRequest is not initialized!")
+RuntimeError: This HTTPXRequest is not initialized!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 134, in network_retry_loop
+    await do_action()
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 127, in do_action
+    action_cb_task.result()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 676, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4780, in get_updates
+    await self._post(
+    ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    ),
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 317, in _request_wrapper
+    raise NetworkError(f"Unknown error in HTTP implementation: {exc!r}") from exc
+telegram.error.NetworkError: Unknown error in HTTP implementation: RuntimeError('This HTTPXRequest is not initialized!')
+2025-12-24 01:18:13,690 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 254, in do_request
+    raise RuntimeError("This HTTPXRequest is not initialized!")
+RuntimeError: This HTTPXRequest is not initialized!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 134, in network_retry_loop
+    await do_action()
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 127, in do_action
+    action_cb_task.result()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 676, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4780, in get_updates
+    await self._post(
+    ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    ),
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 317, in _request_wrapper
+    raise NetworkError(f"Unknown error in HTTP implementation: {exc!r}") from exc
+telegram.error.NetworkError: Unknown error in HTTP implementation: RuntimeError('This HTTPXRequest is not initialized!')
+2025-12-24 01:18:17,074 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+    code, payload = await self.do_request(
+                    ^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 254, in do_request
+    raise RuntimeError("This HTTPXRequest is not initialized!")
+RuntimeError: This HTTPXRequest is not initialized!
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 134, in network_retry_loop
+    await do_action()
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_utils\networkloop.py", line 127, in do_action
+    action_cb_task.result()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+    updates = await self.bot.get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 676, in get_updates
+    updates = await super().get_updates(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<9 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4780, in get_updates
+    await self._post(
+    ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    ),
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 317, in _request_wrapper
+    raise NetworkError(f"Unknown error in HTTP implementation: {exc!r}") from exc
+telegram.error.NetworkError: Unknown error in HTTP implementation: RuntimeError('This HTTPXRequest is not initialized!')
+2025-12-24 01:24:17,814 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getMe "HTTP/1.1 200 OK"
+2025-12-24 01:24:17,816 - __main__ - INFO - Controller bot started. Press Ctrl+C to stop.
+2025-12-24 01:24:17,993 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/deleteWebhook "HTTP/1.1 200 OK"
+2025-12-24 01:24:17,997 - telegram.ext.Application - INFO - Application started
+2025-12-24 01:24:24,094 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:24:25,079 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-12-24 01:24:25,081 - __main__ - INFO - Adbot worker started by controller
+2025-12-24 01:24:25,083 - __main__ - INFO - Found 8 session files
+2025-12-24 01:24:25,083 - __main__ - INFO - Initializing 8 clients...
+2025-12-24 01:24:25,575 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/editMessageText "HTTP/1.1 400 Bad Request"
+2025-12-24 01:24:25,576 - telegram.ext.Application - ERROR - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_application.py", line 1315, in process_update
+    await coroutine
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_handlers\basehandler.py", line 159, in handle_update
+    return await self.callback(update, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 3740, in button_callback
+    await query.edit_message_text(status_msg, reply_markup=reply_markup, disable_web_page_preview=True)
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_callbackquery.py", line 268, in edit_message_text
+    return await self._get_message().edit_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_message.py", line 4142, in edit_text
+    return await self.get_bot().edit_message_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 1735, in edit_message_text
+    return await super().edit_message_text(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<15 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4463, in edit_message_text
+    return await self._send_message(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 634, in _send_message
+    result = await super()._send_message(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<23 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 819, in _send_message
+    result = await self._post(
+             ^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+    return await self._do_post(
+           ^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+    return await super()._do_post(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+    result = await request.post(
+             ^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+    result = await self._request_wrapper(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<7 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 375, in _request_wrapper
+    raise exception
+telegram.error.BadRequest: Message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+2025-12-24 01:24:26,110 - __main__ - INFO - Initialized client for session +254708803721 (disconnected)
+2025-12-24 01:24:27,057 - __main__ - INFO - Initialized client for session +254727162683 (disconnected)
+2025-12-24 01:24:27,994 - __main__ - INFO - Initialized client for session +254741795774 (disconnected)
+2025-12-24 01:24:29,040 - __main__ - INFO - Initialized client for session +254742982807 (disconnected)
+2025-12-24 01:24:30,057 - __main__ - INFO - Initialized client for session +254758678951 (disconnected)
+2025-12-24 01:24:31,051 - __main__ - INFO - Initialized client for session +254768741010 (disconnected)
+2025-12-24 01:24:32,099 - __main__ - INFO - Initialized client for session +254799668603 (disconnected)
+2025-12-24 01:24:32,519 - __main__ - INFO - Initialized client for session 917488156157 (disconnected)
+2025-12-24 01:24:32,519 - __main__ - INFO - Successfully initialized 8 clients
+2025-12-24 01:24:32,519 - __main__ - INFO - Account 1: 10 groups assigned
+2025-12-24 01:24:32,520 - __main__ - INFO - Account 2: 10 groups assigned
+2025-12-24 01:24:32,520 - __main__ - INFO - Account 3: 9 groups assigned
+2025-12-24 01:24:32,520 - __main__ - INFO - Account 4: 9 groups assigned
+2025-12-24 01:24:32,520 - __main__ - INFO - Account 5: 9 groups assigned
+2025-12-24 01:24:32,520 - __main__ - INFO - Account 6: 9 groups assigned
+2025-12-24 01:24:32,520 - __main__ - INFO - Account 7: 9 groups assigned
+2025-12-24 01:24:32,520 - __main__ - INFO - Account 8: 9 groups assigned
+2025-12-24 01:24:33,221 - __main__ - INFO - Found 8 session files
+2025-12-24 01:24:33,221 - __main__ - INFO - Checking 8 sessions for frozen/unauthorized status...
+2025-12-24 01:24:34,274 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:24:35,488 - __main__ - INFO - Account 1: ACTIVE - Starting worker
+2025-12-24 01:24:37,917 - __main__ - INFO - Account 2: ACTIVE - Starting worker
+2025-12-24 01:24:39,981 - __main__ - INFO - Account 3: ACTIVE - Starting worker
+2025-12-24 01:24:42,137 - __main__ - INFO - Account 4: ACTIVE - Starting worker
+2025-12-24 01:24:43,998 - __main__ - WARNING - Account 5: FROZEN - Skipping worker
+2025-12-24 01:24:44,445 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:24:45,954 - __main__ - INFO - Account 6: ACTIVE - Starting worker
+2025-12-24 01:24:48,097 - __main__ - INFO - Account 7: ACTIVE - Starting worker
+2025-12-24 01:24:49,066 - __main__ - INFO - Account 8: ACTIVE - Starting worker
+2025-12-24 01:24:49,066 - __main__ - INFO - Found 7 active sessions, 1 skipped
+2025-12-24 01:24:49,067 - __main__ - INFO - Starting 7 worker processes for parallel posting...
+2025-12-24 01:24:49,067 - __main__ - INFO - Spawning worker 1: +254708803721.session with 10 groups
+2025-12-24 01:24:50,739 - __main__ - INFO - Spawning worker 2: +254727162683.session with 10 groups
+2025-12-24 01:24:51,503 - __mp_main__ - INFO - Account 1 -> SKIPPED | BAY & SELL > [ HULK ] | CHAT_RESTRICTED
+
+================================================================================
+REAL ERROR [Account 1 - POST]: Exception: CHAT_RESTRICTED
+Exception: CHAT_RESTRICTED
+
+================================================================================
+2025-12-24 01:24:52,045 - __main__ - INFO - Spawning worker 3: +254741795774.session with 9 groups
+2025-12-24 01:24:52,782 - __mp_main__ - INFO - Group -1001902360936 blacklisted for account 2
+2025-12-24 01:24:52,782 - __mp_main__ - INFO - Account 2 -> FAILED | Buy and Sell | WRITE_FORBIDDEN
+
+================================================================================
+REAL ERROR [Account 2 - POST]: Exception: WRITE_FORBIDDEN
+Exception: WRITE_FORBIDDEN
+
+================================================================================
+2025-12-24 01:24:53,583 - __main__ - INFO - Spawning worker 4: +254742982807.session with 9 groups
+2025-12-24 01:24:54,228 - __mp_main__ - INFO - Account 3 -> POSTED | Take Off Market
+2025-12-24 01:24:54,617 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:24:55,078 - __main__ - INFO - Spawning worker 6: +254768741010.session with 9 groups
+2025-12-24 01:24:55,609 - __mp_main__ - INFO - Group -1001695151116 blacklisted for account 4
+2025-12-24 01:24:55,609 - __mp_main__ - INFO - Account 4 -> FAILED | Reich Otag | WRITE_FORBIDDEN
+
+================================================================================
+REAL ERROR [Account 4 - POST]: Exception: WRITE_FORBIDDEN
+Exception: WRITE_FORBIDDEN
+
+================================================================================
+2025-12-24 01:24:56,588 - __main__ - INFO - Spawning worker 7: +254799668603.session with 9 groups
+2025-12-24 01:24:57,506 - __mp_main__ - INFO - Account 6 -> POSTED | 𝗺𝗶𝗻𝗶𝘀𝘁𝗼𝗽
+2025-12-24 01:24:57,800 - __main__ - INFO - Spawning worker 8: 917488156157.session with 9 groups
+2025-12-24 01:24:58,925 - __mp_main__ - INFO - Account 7 -> POSTED | Market
+
+================================================================================
+REAL ERROR [Account 8 - POST]: ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2696, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1009, in forward_messages
+    entity = await self.get_input_entity(entity)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 468, in get_input_entity
+    raise ValueError(
+    ...<4 lines>...
+    )
+ValueError: Could not find the input entity for PeerChannel(channel_id=1749468508) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+
+================================================================================
+2025-12-24 01:24:59,754 - __main__ - INFO - ✅ Started 7 worker processes in parallel
+2025-12-24 01:25:00,319 - __main__ - INFO - Batched Telegram log sender initialized
+2025-12-24 01:25:00,320 - __main__ - INFO - Account 5 -> SKIPPED | FROZEN
+2025-12-24 01:25:00,320 - __main__ - INFO - Account 1 -> SKIPPED | BAY &amp; SELL &gt; [ HULK ] | CHAT_RESTRICTED
+2025-12-24 01:25:00,321 - __main__ - INFO - Account 2 -> FAILED | Buy and Sell | WRITE_FORBIDDEN
+2025-12-24 01:25:00,321 - __main__ - INFO - Account 3 -> POSTED | Take Off Market
+2025-12-24 01:25:00,321 - __main__ - INFO - Account 4 -> FAILED | Reich Otag | WRITE_FORBIDDEN
+2025-12-24 01:25:01,114 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:25:02,126 - __main__ - INFO - Account 6 -> POSTED | 𝗺𝗶𝗻𝗶𝘀𝘁𝗼𝗽
+2025-12-24 01:25:02,127 - __main__ - INFO - Account 7 -> POSTED | Market
+2025-12-24 01:25:02,393 - __mp_main__ - INFO - Account 3 -> POSTED | sfs | Trusted Market
+2025-12-24 01:25:02,748 - __main__ - INFO - Account 3 -> POSTED | sfs | Trusted Market
+2025-12-24 01:25:04,130 - __mp_main__ - INFO - Account 6 -> POSTED | The Gang MP
+2025-12-24 01:25:04,610 - __main__ - INFO - Account 6 -> POSTED | The Gang MP
+2025-12-24 01:25:04,789 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+
+================================================================================
+REAL ERROR [Account 7 - POST]: SlowModeWaitError: A wait of 2998 seconds is required before sending another message in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2696, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.SlowModeWaitError: A wait of 2998 seconds is required before sending another message in this chat (caused by ForwardMessagesRequest)
+
+================================================================================
+
+================================================================================
+REAL ERROR [Account 6 - POST]: SlowModeWaitError: A wait of 2997 seconds is required before sending another message in this chat (caused by ForwardMessagesRequest)
+Traceback (most recent call last):
+  File "c:\Users\NCS\Desktop\Adbot\main.py", line 2696, in worker_forwarding_loop
+    result = await client.forward_messages(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\messages.py", line 1046, in forward_messages
+    result = await self(req)
+             ^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 30, in __call__
+    return await self._call(self._sender, request, ordered=ordered)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telethon\client\users.py", line 87, in _call
+    result = await future
+             ^^^^^^^^^^^^
+telethon.errors.rpcerrorlist.SlowModeWaitError: A wait of 2997 seconds is required before sending another message in this chat (caused by ForwardMessagesRequest)
+
+================================================================================
+2025-12-24 01:25:10,323 - __mp_main__ - INFO - Account 3 -> POSTED | 𝐏𝐀𝐖𝐗𝐈𝐄 𝐌𝐀𝐑𝐊𝐄𝐓
+2025-12-24 01:25:10,783 - __main__ - INFO - Account 3 -> POSTED | 𝐏𝐀𝐖𝐗𝐈𝐄 𝐌𝐀𝐑𝐊𝐄𝐓
+2025-12-24 01:25:11,047 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:25:14,961 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:25:18,945 - __mp_main__ - INFO - Account 3 -> POSTED | Exchangers Market
+2025-12-24 01:25:19,448 - __main__ - INFO - Account 3 -> POSTED | Exchangers Market
+2025-12-24 01:25:22,795 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:25:25,133 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:25:25,251 - __mp_main__ - INFO - Account 3 -> SKIPPED | EXO Market | CHAT_RESTRICTED
+
+================================================================================
+REAL ERROR [Account 3 - POST]: Exception: CHAT_RESTRICTED
+Exception: CHAT_RESTRICTED
+
+================================================================================
+2025-12-24 01:25:25,650 - __main__ - INFO - Account 3 -> SKIPPED | EXO Market | CHAT_RESTRICTED
+2025-12-24 01:25:34,823 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-24 01:25:35,305 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:25:43,528 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-24 01:25:44,233 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-12-24 01:25:44,235 - __main__ - INFO - Adbot worker stopped by controller
+2025-12-24 01:25:44,236 - __main__ - INFO - Flushing remaining logs...
+2025-12-24 01:25:44,237 - __main__ - INFO - Waiting for worker processes to finish...
+2025-12-24 01:25:54,248 - __main__ - WARNING - Worker 13776 did not terminate, forcing...

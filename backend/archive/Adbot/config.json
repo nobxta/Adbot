@@ -1,0 +1,36 @@
+{
+  "post_link": [
+    "t.me/HqAdzz/6"
+  ],
+  "delay_between_posts": 5,
+  "delay_between_cycles": 300,
+  "default_chatlist_link": "https://t.me/addlist/i3NfCrNE_D1jZjE1",
+  "accounts": [
+    {
+      "api_id": "24881145",
+      "api_hash": "d625c51e93f6b7367c1ff263cb5f7c89"
+    },
+    {
+      "api_id": "25170767",
+      "api_hash": "d512fd74809a4ca3cd59078eef73afcd"
+    },
+    {
+      "api_id": "25847373",
+      "api_hash": "b7ae3644130f9d51a589c757b92c0c22"
+    },
+    {
+      "api_id": "26481096",
+      "api_hash": "490e357d5a2d4dae14b23fa74087f17d"
+    },
+    {
+      "api_id": "26666259",
+      "api_hash": "e6530f4de21f2ee9add3ecc2ae52b44a"
+    }
+  ],
+  "controller_bot_token": "6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48",
+  "controller_authorized_user_ids": [
+    5495140274
+  ],
+  "log_group_id": -1002213570018,
+  "log_group_link": "https://t.me/owladslogs"
+}

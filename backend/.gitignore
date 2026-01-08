@@ -1,0 +1,6 @@
+# Ignore JSON data files (contain sensitive information)
+data/*.json
+
+# But keep the directory structure
+!data/.gitkeep
+

@@ -1,0 +1,14 @@
+{
+  "bot_start_time": null,
+  "bot_stop_time": "2025-12-24T01:25:44.234739",
+  "uptime_start": null,
+  "total_uptime_seconds": 0,
+  "accounts": {},
+  "groups": {},
+  "total_posts": 0,
+  "total_success": 0,
+  "total_failures": 0,
+  "total_flood_waits": 0,
+  "total_messages_sent": 0,
+  "session_history": []
+}

@@ -1,0 +1,6 @@
+# Core Telegram libraries
+telethon>=1.43.0
+python-telegram-bot>=20.7
+
+# Optional but recommended for timezone support
+pytz>=2023.3

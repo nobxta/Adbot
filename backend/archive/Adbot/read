@@ -1,0 +1,1046 @@
+# Telegram AdBot System - Complete Documentation
+
+## Overview
+
+The **Telegram AdBot System** is an automated message forwarding service designed to distribute content from Telegram channels to multiple groups/channels simultaneously. The system uses multiple Telegram sessions (accounts) to forward posts in parallel, providing scalability and redundancy.
+
+### What It Does
+
+- **Automated Posting**: Forwards messages from specified channels/posts to multiple Telegram groups
+- **Multi-Account Support**: Uses multiple Telegram sessions to distribute workload and avoid rate limits
+- **Health Monitoring**: Tracks session health (active, frozen, banned) and automatically skips unhealthy sessions
+- **Statistics Tracking**: Comprehensive logging and statistics for posts, successes, failures, and account performance
+- **Controller Bot**: Telegram bot interface for managing the system remotely
+- **Group Management**: Supports individual groups and Telegram chatlists
+- **Error Handling**: Automatic retry logic, blacklisting of problematic groups, and detailed error reporting
+
+### Problem It Solves
+
+- **Manual Posting**: Eliminates the need to manually forward messages to dozens or hundreds of groups
+- **Time Efficiency**: Automates repetitive posting tasks, allowing you to focus on content creation
+- **Scale**: Handles posting to large numbers of groups simultaneously
+- **Reliability**: Multi-account support ensures posting continues even if some accounts face issues
+
+### Target Users
+
+**Current Design**: **Single-User System**
+- One user operates the entire system
+- All sessions belong to one operator
+- All groups are managed by one operator
+- All logs and statistics are global
+- No user isolation or multi-tenancy
+
+The system is currently built for **single-user operation**, where one person manages all sessions, groups, and configuration. See the "Multi-User Architecture" section below for scalability considerations.
+
+---
+
+## Folder Structure Breakdown
+
+### Production Folders (Root Directory)
+
+```
+Adbot/
+├── main.py                    # Core AdBot system (5,468 lines)
+├── config.json                # Configuration file (API credentials, settings)
+├── requirements.txt           # Python dependencies
+├── groups.txt                 # Active groups list (default source)
+├── groups/                    # Backup/historical group lists
+│   └── folder_YYYYMMDD_HHMMSS.txt
+├── sessions/                  # Telegram session files (.session files)
+├── logs/                      # Daily log files
+│   └── adbot_YYYYMMDD.log
+├── stats.json                 # Statistics tracking (accounts, groups, performance)
+├── sessions.json              # Session registry (metadata, status)
+├── group_blacklist.json       # Blacklisted groups per account
+└── advert/
+    └── _others/               # Experimental/deprecated code (see below)
+```
+
+### Folder Details
+
+#### `main.py`
+**Purpose**: Core system file containing all AdBot logic  
+**Size**: 5,468 lines  
+**Contents**:
+- Controller bot (python-telegram-bot integration)
+- Session management and health checking
+- Message forwarding logic with multiprocessing
+- Statistics tracking
+- Group distribution algorithms
+- Error handling and retry logic
+- Logging and notification system
+- Configuration management
+- Command handlers for Telegram bot interface
+
+**Why in root**: This is the production entry point. The entire system runs from this file.
+
+#### `config.json`
+**Purpose**: Central configuration file  
+**Structure**:
+```json
+{
+  "post_link": ["t.me/channel/123"],        // Source posts to forward
+  "delay_between_posts": 5,                  // Seconds between posts to same group
+  "delay_between_cycles": 300,               // Seconds between complete cycles
+  "default_chatlist_link": "https://...",   // Default Telegram chatlist
+  "accounts": [                              // API credentials
+    {"api_id": "...", "api_hash": "..."}
+  ],
+  "controller_bot_token": "...",            // Bot token for control interface
+  "controller_authorized_user_ids": [123],  // Authorized Telegram user IDs
+  "log_group_id": -100...,                  // Telegram group for logs
+  "log_group_link": "https://..."
+}
+```
+
+**Why in root**: Required at startup. System cannot run without this file.
+
+#### `groups.txt`
+**Purpose**: Default group list (one group ID per line)  
+**Format**:
+```
+-1001234567890
+-1000987654321
+t.me/channelname
+```
+
+**Usage**: Primary source for groups when system starts. Can be managed via controller bot or manually edited.
+
+#### `groups/`
+**Purpose**: Historical/backup group lists  
+**Files**: Timestamped backups like `folder_20251221_192323.txt`  
+**Why separate folder**: Keeps backups organized. System primarily uses `groups.txt`, but backups are preserved here.
+
+#### `sessions/`
+**Purpose**: Stores Telegram session files  
+**Files**: `.session` and `.session-journal` files  
+**Format**: Session files are named by phone number (e.g., `+254708803721.session`)  
+**Why separate folder**: Sessions are sensitive files. Isolation helps with security and organization.
+
+**Important**: Session files are created when you authenticate a Telegram account using Telethon. They contain authentication tokens and should be kept secure.
+
+#### `logs/`
+**Purpose**: Daily rotating log files  
+**Files**: `adbot_YYYYMMDD.log` (one file per day)  
+**Contents**:
+- All system events (info, warnings, errors)
+- Posting attempts and results
+- Account status changes
+- Error tracebacks
+- Worker process logs
+
+**Why separate folder**: Logs grow over time. Separation makes cleanup and analysis easier.
+
+#### `stats.json`
+**Purpose**: Persistent statistics storage  
+**Structure**:
+```json
+{
+  "bot_start_time": "2025-12-24T...",
+  "bot_stop_time": "2025-12-24T...",
+  "uptime_start": "2025-12-24T...",
+  "total_uptime_seconds": 12345,
+  "accounts": {
+    "1": {
+      "success": 100,
+      "failures": 5,
+      "flood_waits": 2,
+      "banned": false,
+      "frozen": false,
+      "total_messages_sent": 100,
+      "avg_response_time": 1.5,
+      "error_types": {...}
+    }
+  },
+  "groups": {
+    "Group Name": {
+      "success": 50,
+      "failures": 2,
+      "last_post": "2025-12-24T...",
+      "consecutive_failures": 0
+    }
+  },
+  "total_posts": 500,
+  "total_success": 495,
+  "total_failures": 5
+}
+```
+
+**Why in root**: Statistics are core system data. Quick access needed for reporting.
+
+#### `sessions.json`
+**Purpose**: Session registry (metadata about sessions)  
+**Structure**:
+```json
+{
+  "+254708803721.session": {
+    "session_name": "+254708803721.session",
+    "user_id": 123456789,
+    "username": "username",
+    "phone": "+254708803721",
+    "status": "ACTIVE",
+    "last_updated": "2025-12-24T..."
+  }
+}
+```
+
+**Why in root**: Session metadata is frequently accessed. System syncs this file automatically when sessions are added/removed.
+
+#### `group_blacklist.json`
+**Purpose**: Stores groups that should be skipped per account  
+**Structure**:
+```json
+{
+  "2": ["-1001902360936"],
+  "4": ["-1001695151116"]
+}
+```
+(Account number -> list of group IDs to skip)
+
+**Why in root**: Blacklist is checked during posting. Fast access needed.
+
+---
+
+### Experimental/Deprecated Code (`advert/_others/`)
+
+The `advert/_others/` folder contains experimental, testing, or deprecated code that is **NOT used by the production system**.
+
+#### Files in `_others/`:
+
+1. **`forwarder.py`**
+   - **Purpose**: Old/experimental forwarder implementation
+   - **Status**: Deprecated - functionality integrated into `main.py`
+   - **Why in _others**: Replaced by the multiprocessing worker system in `main.py`
+
+2. **`scrapper.py`**
+   - **Purpose**: Tool to scrape groups from Telegram chatlists
+   - **Status**: Standalone utility, not integrated into main system
+   - **Why in _others**: Experimental tool, not part of core AdBot functionality
+
+3. **`checker.py`**
+   - **Purpose**: Session status checker utility
+   - **Status**: Standalone tool for testing session health
+   - **Why in _others**: Functionality is integrated into `main.py` (health checking system)
+
+4. **`frozen.py`**
+   - **Purpose**: Frozen session detector (testing/experimental)
+   - **Status**: Standalone utility
+   - **Why in _others**: Session health checking is handled by the main system
+
+5. **`text.py`**
+   - **Purpose**: Testing script for Telegram API functions
+   - **Status**: Experimental/testing code
+   - **Why in _others**: Testing code, not production functionality
+
+6. **`mygroup.txt`**
+   - **Purpose**: Test group list (contains test group IDs)
+   - **Status**: Testing data
+   - **Why in _others**: Test data, not production groups
+
+**Recommendation**: These files can be safely ignored or removed. They are kept for reference or future experimentation.
+
+---
+
+## System Flow: Input → Processing → Output
+
+### Input Phase
+
+1. **Configuration Load** (`config.json`)
+   - Post links (source messages to forward)
+   - API credentials for Telegram
+   - Delay settings
+   - Controller bot settings
+
+2. **Groups Load** (`groups.txt` or chatlist)
+   - Group IDs loaded from file or Telegram chatlist
+   - Groups distributed evenly across available sessions
+
+3. **Sessions Discovery** (`sessions/` folder)
+   - System scans `sessions/` for `.session` files
+   - Sessions registry (`sessions.json`) synced
+   - Session health checked (ACTIVE, FROZEN, BANNED)
+
+### Processing Phase
+
+1. **Health Check**
+   - Each session is tested for connectivity and authorization
+   - Only ACTIVE sessions are used
+   - FROZEN/BANNED sessions are skipped
+
+2. **Group Distribution**
+   - Groups distributed evenly across ACTIVE sessions
+   - Each session gets a subset of groups
+   - Distribution algorithm ensures balance
+
+3. **Worker Processes Spawned**
+   - One worker process per ACTIVE session
+   - Each worker runs in separate process (true multiprocessing)
+   - Workers operate independently and in parallel
+
+4. **Posting Loop** (per worker)
+   - Worker loads assigned groups
+   - For each cycle:
+     - Selects random post link from config
+     - For each assigned group:
+       - Checks blacklist (skip if blacklisted)
+       - Forwards message from source channel to group
+       - Logs result (SUCCESS/FAILED)
+       - Tracks statistics
+       - Applies delay between posts
+     - Applies delay between cycles
+
+5. **Error Handling**
+   - Network errors: Retry with exponential backoff
+   - Rate limits (FloodWait): Automatic waiting
+   - Account banned: Session marked BANNED, skipped
+   - Account frozen: Session marked FROZEN, skipped
+   - Group errors: Tracked, auto-blacklisted after 2 consecutive failures
+
+### Output Phase
+
+1. **Logging**
+   - File logs: Written to `logs/adbot_YYYYMMDD.log`
+   - Telegram logs: Batched messages sent to log group
+   - Console logs: Real-time output for monitoring
+
+2. **Statistics**
+   - Real-time stats updated in memory
+   - Saved to `stats.json` periodically (every 10 posts)
+   - Statistics include:
+     - Per-account: success/failure counts, response times, error types
+     - Per-group: success/failure counts, last post time, consecutive failures
+     - Global: total posts, success rate, flood waits
+
+3. **Notifications**
+   - Critical alerts sent to authorized users
+   - Account banned/frozen notifications
+   - High failure rate alerts
+
+---
+
+## What a Normal User Can Do
+
+### Adding Groups
+
+**Method 1: Via Controller Bot**
+1. Send `/start` to controller bot
+2. Click "📁 Group" button
+3. Choose "Add Groups" or "Use Chatlist"
+4. Send group links or chatlist link
+
+**Method 2: Manual Edit**
+1. Edit `groups.txt` file
+2. Add one group ID per line (format: `-1001234567890` or `t.me/channelname`)
+3. Save file
+4. System will use new groups on next start/cycle
+
+**Method 3: Upload Groups File**
+1. Create a text file with group IDs (one per line)
+2. Send file to controller bot
+3. Bot saves as backup in `groups/` folder
+
+### Adding Sessions
+
+**Method 1: Upload ZIP**
+1. Create ZIP file containing `.session` files
+2. Send ZIP to controller bot
+3. Bot extracts to `sessions/` folder
+4. Sessions registry (`sessions.json`) automatically synced
+
+**Method 2: Manual**
+1. Copy `.session` files to `sessions/` folder
+2. Send `/refresh_sessions` command to bot
+3. Registry synced automatically
+
+**Note**: Session files are created by authenticating Telegram accounts using Telethon scripts. The system only uses existing `.session` files.
+
+### Assigning Sessions to Groups
+
+**Automatic**: The system automatically distributes groups across all ACTIVE sessions.
+
+**Manual Control**: 
+- Remove sessions: `/remove_session <filename>` (moves to `removed/` folder)
+- Sessions are assigned groups based on availability (first N sessions get groups)
+
+**Current Limitation**: No manual session-to-group assignment. Distribution is automatic and even.
+
+### Starting/Stopping AdBot
+
+**Via Controller Bot:**
+1. Send `/start` to controller bot
+2. Click "▶️ Run" button to start
+3. Click "⏸️ Stop" button to stop/pause
+4. System can be started/stopped remotely
+
+**Via System (if running as service):**
+- Start: Launch `main.py` (system starts in STOPPED state by default)
+- Stop: Send stop command via bot, or Ctrl+C (graceful shutdown)
+
+### Viewing Logs
+
+**Method 1: Controller Bot**
+1. Send `/logs` command
+2. Choose log type:
+   - All logs
+   - Error logs only
+   - Posting logs only
+3. Bot sends log file
+
+**Method 2: Direct File Access**
+- Open `logs/adbot_YYYYMMDD.log` (current day's log)
+- Logs are plain text, UTF-8 encoded
+- Contains timestamps, log levels, and messages
+
+**Method 3: Telegram Log Group**
+- System sends batched logs to configured log group
+- Real-time updates on posting status
+- Formatted HTML messages with colors
+
+### Viewing Reports/Statistics
+
+**Via Controller Bot:**
+1. Send `/stats` command
+2. Bot sends comprehensive statistics:
+   - Uptime
+   - Total posts, success, failures
+   - Success rate
+   - Per-account performance
+   - Per-group performance
+   - Flood wait counts
+
+**Via File:**
+- Open `stats.json` (JSON format)
+- Contains all historical statistics
+- Can be parsed by external tools
+
+### Replacing Banned/Frozen Sessions
+
+**Automatic Detection:**
+- System detects banned/frozen sessions during health check
+- Banned/frozen sessions are automatically skipped
+- System continues with remaining ACTIVE sessions
+
+**Manual Removal:**
+1. Send `/sessions` to view all sessions and their status
+2. Send `/remove_session <filename>` to remove a session
+3. Session file moved to `removed/` folder (backup)
+4. Add new session file to `sessions/` folder
+5. Send `/refresh_sessions` to update registry
+
+**Adding Replacement:**
+1. Obtain new `.session` file (authenticate new account)
+2. Upload ZIP or copy file to `sessions/`
+3. System automatically detects and uses new session
+
+---
+
+## Logs & Reports
+
+### Log Files
+
+**Location**: `logs/adbot_YYYYMMDD.log`
+
+**Format**:
+```
+2025-12-24 12:34:56,789 - __main__ - INFO - Found 5 session files
+2025-12-24 12:34:57,123 - __main__ - INFO - Account 1: ACTIVE - Starting worker
+2025-12-24 12:35:01,456 - __main__ - WARNING - Account 2: FROZEN - Skipping worker
+2025-12-24 12:35:05,789 - __main__ - ERROR - Failed to forward to group: FloodWaitError
+```
+
+**Log Levels**:
+- **INFO**: Normal operations (session initialization, posting attempts)
+- **WARNING**: Non-critical issues (session frozen, group errors)
+- **ERROR**: Critical errors (account banned, connection failures)
+
+**Rotation**: One file per day. Old files remain in `logs/` folder.
+
+### Statistics Reports
+
+**Location**: `stats.json`
+
+**Key Metrics**:
+
+1. **Account-Level Stats**:
+   - `success`: Number of successful posts
+   - `failures`: Number of failed posts
+   - `flood_waits`: Number of rate limit events
+   - `banned`: Boolean (is account banned)
+   - `frozen`: Boolean (is account frozen)
+   - `total_messages_sent`: Total messages forwarded
+   - `avg_response_time`: Average time per post (seconds)
+   - `error_types`: Breakdown of error types
+
+2. **Group-Level Stats**:
+   - `success`: Successful posts to this group
+   - `failures`: Failed posts to this group
+   - `last_post`: Timestamp of last successful post
+   - `consecutive_failures`: Current failure streak
+
+3. **Global Stats**:
+   - `total_posts`: Total posting attempts
+   - `total_success`: Total successful posts
+   - `total_failures`: Total failed posts
+   - `total_flood_waits`: Total rate limit events
+   - `total_uptime_seconds`: Total system uptime
+
+### Error Storage
+
+**File Logs**: All errors are logged to daily log files with full tracebacks.
+
+**Telegram Logs**: Critical errors are sent to the log group with formatted messages.
+
+**Statistics**: Error types are tracked in `stats.json` under `accounts[account_num].error_types`.
+
+**Blacklist**: Groups with 2+ consecutive failures are automatically added to `group_blacklist.json`.
+
+### How to Read Logs (Admin Guide)
+
+1. **Daily Monitoring**:
+   - Check `logs/adbot_YYYYMMDD.log` for today's activity
+   - Look for ERROR entries (indicate problems)
+   - Monitor WARNING entries (potential issues)
+
+2. **Account Health**:
+   - Check `/sessions` command output
+   - Look for ACTIVE vs FROZEN/BANNED status
+   - Monitor `stats.json` for `banned: true` or `frozen: true`
+
+3. **Performance Analysis**:
+   - Run `/stats` command for overview
+   - Check `avg_response_time` (should be < 5 seconds normally)
+   - Monitor `flood_waits` (high counts indicate rate limiting)
+
+4. **Error Patterns**:
+   - Review `error_types` in statistics
+   - Common errors:
+     - `FloodWaitError`: Rate limiting (normal, system handles automatically)
+     - `ChatWriteForbiddenError`: Group permissions (group may need to be removed)
+     - `UserBannedInChannelError`: Account banned from group (auto-blacklisted)
+     - `AuthKeyUnregisteredError`: Session invalid (session needs replacement)
+
+5. **Group Issues**:
+   - Check `consecutive_failures` in group stats
+   - Groups with 2+ consecutive failures are auto-blacklisted
+   - Review `group_blacklist.json` to see which groups are skipped
+
+---
+
+## Single-User vs Multi-User Architecture
+
+### Current Design: Single-User System
+
+**Architecture**:
+```
+┌─────────────────────────────────────┐
+│         Single Operator             │
+├─────────────────────────────────────┤
+│  • All sessions in sessions/        │
+│  • All groups in groups.txt         │
+│  • One config.json                  │
+│  • Global stats.json                │
+│  • Global logs/                     │
+│  • One controller bot               │
+└─────────────────────────────────────┘
+         ↓
+┌─────────────────────────────────────┐
+│      AdBot Core (main.py)           │
+│  • Processes all sessions           │
+│  • Posts to all groups              │
+│  • Global statistics                │
+└─────────────────────────────────────┘
+```
+
+**Characteristics**:
+- **One Owner**: All resources belong to one operator
+- **No Isolation**: All sessions, groups, and data are shared
+- **Single Config**: One `config.json` controls everything
+- **Global Stats**: Statistics are aggregated globally
+- **Simple Authorization**: Controller bot uses simple user ID list
+
+**Limitations**:
+1. **No Multi-Tenancy**: Cannot support multiple users/operators
+2. **No User Isolation**: All users see all data
+3. **No Per-User Limits**: Cannot limit sessions/groups per user
+4. **No Billing Integration**: No way to track usage per user
+5. **No User Dashboard**: No per-user statistics or controls
+6. **Scalability Issues**: Adding users requires manual configuration changes
+
+### Proposed Multi-User Architecture
+
+**Design Goal**: Support multiple users, each with isolated sessions, groups, and statistics.
+
+**Proposed Structure**:
+```
+┌─────────────────────────────────────────────────────────┐
+│              Multi-User AdBot System                    │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐ │
+│  │   User 1     │  │   User 2     │  │   User 3     │ │
+│  ├──────────────┤  ├──────────────┤  ├──────────────┤ │
+│  │ sessions/    │  │ sessions/    │  │ sessions/    │ │
+│  │ groups.txt   │  │ groups.txt   │  │ groups.txt   │ │
+│  │ stats.json   │  │ stats.json   │  │ stats.json   │ │
+│  │ logs/        │  │ logs/        │  │ logs/        │ │
+│  │ config.json  │  │ config.json  │  │ config.json  │ │
+│  └──────────────┘  └──────────────┘  └──────────────┘ │
+│         │                  │                  │         │
+│         └──────────────────┼──────────────────┘         │
+│                            ↓                            │
+│              ┌─────────────────────────┐                │
+│              │   AdBot Core Engine     │                │
+│              │   (User-Aware)          │                │
+│              │                         │                │
+│              │  • User isolation       │                │
+│              │  • Per-user workers     │                │
+│              │  • Per-user stats       │                │
+│              │  • Resource limits      │                │
+│              └─────────────────────────┘                │
+│                            ↓                            │
+│              ┌─────────────────────────┐                │
+│              │   Database Layer        │                │
+│              │   (Users, Sessions,     │                │
+│              │    Groups, Stats)       │                │
+│              └─────────────────────────┘                │
+└─────────────────────────────────────────────────────────┘
+```
+
+**Key Changes Needed**:
+
+1. **User Management**:
+   - Database table: `users` (id, email, plan, created_at, etc.)
+   - Authentication system (JWT tokens, API keys)
+   - User registration and login
+
+2. **Resource Isolation**:
+   - Per-user folder structure: `users/{user_id}/sessions/`, `users/{user_id}/groups.txt`, etc.
+   - OR database storage for sessions/groups (better for scalability)
+   - Per-user configuration: `users/{user_id}/config.json`
+
+3. **Session Management**:
+   - Sessions table: `sessions` (id, user_id, filename, status, created_at)
+   - User can only access their own sessions
+   - Session assignment to users
+
+4. **Group Management**:
+   - Groups table: `groups` (id, user_id, group_id, name, status)
+   - Per-user group lists
+   - User can only manage their own groups
+
+5. **Statistics Isolation**:
+   - Per-user statistics: `users/{user_id}/stats.json` OR database table
+   - User can only view their own statistics
+   - Global admin statistics (optional)
+
+6. **Worker Processes**:
+   - One worker pool per user (or shared pool with user context)
+   - Workers load user-specific sessions and groups
+   - Workers track statistics per user
+
+7. **API Layer**:
+   - REST API endpoints:
+     - `POST /api/users/{user_id}/start` - Start posting for user
+     - `POST /api/users/{user_id}/stop` - Stop posting for user
+     - `GET /api/users/{user_id}/stats` - Get user statistics
+     - `GET /api/users/{user_id}/sessions` - List user sessions
+     - `POST /api/users/{user_id}/sessions` - Add session
+     - `GET /api/users/{user_id}/groups` - List user groups
+     - `POST /api/users/{user_id}/groups` - Add group
+   - Authentication middleware (verify user owns resource)
+
+8. **Billing/Plans**:
+   - Plan limits: max sessions, max groups, max posts per day
+   - Usage tracking: posts sent, API calls made
+   - Billing integration (Stripe, PayPal, etc.)
+
+**Database Schema (Example)**:
+
+```sql
+-- Users table
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    plan VARCHAR(50) DEFAULT 'free',
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Sessions table
+CREATE TABLE sessions (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    filename VARCHAR(255) NOT NULL,
+    status VARCHAR(50) DEFAULT 'UNKNOWN',
+    user_id_telegram BIGINT,
+    username VARCHAR(255),
+    phone VARCHAR(50),
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(user_id, filename)
+);
+
+-- Groups table
+CREATE TABLE groups (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    group_id VARCHAR(255) NOT NULL,
+    name VARCHAR(255),
+    status VARCHAR(50) DEFAULT 'ACTIVE',
+    created_at TIMESTAMP DEFAULT NOW(),
+    UNIQUE(user_id, group_id)
+);
+
+-- Statistics table
+CREATE TABLE statistics (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    account_num INTEGER,
+    group_name VARCHAR(255),
+    status VARCHAR(50),
+    error_reason TEXT,
+    response_time FLOAT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+**Migration Path**:
+
+1. **Phase 1: Add User Context**
+   - Add `user_id` parameter to all functions
+   - Modify file paths to include user_id: `users/{user_id}/sessions/`
+   - Update controller bot to require user identification
+
+2. **Phase 2: Database Integration**
+   - Replace file-based storage with database
+   - Migrate existing data to database
+   - Update all functions to use database queries
+
+3. **Phase 3: API Layer**
+   - Create REST API endpoints
+   - Add authentication middleware
+   - Update frontend to use API
+
+4. **Phase 4: Multi-User Core**
+   - Modify worker system to support per-user workers
+   - Add user isolation to statistics tracking
+   - Implement resource limits per user
+
+---
+
+## Next.js Frontend Integration
+
+### Overview
+
+The current system uses a **Telegram bot** as the control interface. To support a web-based dashboard (Next.js), the system needs an **API layer** that exposes functionality via HTTP endpoints.
+
+### Current Interface: Telegram Bot
+
+**Commands Available**:
+- `/start` - Main menu
+- `/stats` - View statistics
+- `/sessions` - List sessions
+- `/logs` - View log files
+- `/config` - View configuration
+- Button-based controls (Run, Stop, Change Post Link, etc.)
+
+### Proposed API Architecture
+
+**Backend API Layer** (Flask/FastAPI):
+
+```
+┌─────────────────────────────────────┐
+│      Next.js Frontend (React)       │
+│  • User Dashboard                   │
+│  • Session Management UI            │
+│  • Group Management UI              │
+│  • Statistics Charts                │
+│  • Real-time Status                 │
+└──────────────┬──────────────────────┘
+               │ HTTP/REST API
+               ↓
+┌─────────────────────────────────────┐
+│      API Server (FastAPI/Flask)     │
+│  • Authentication Middleware        │
+│  • Request Validation               │
+│  • User Isolation Enforcement       │
+│  • Rate Limiting                    │
+└──────────────┬──────────────────────┘
+               │ Internal Calls
+               ↓
+┌─────────────────────────────────────┐
+│      AdBot Core (main.py)           │
+│  • Start/Stop Controls              │
+│  • Session Management               │
+│  • Group Management                 │
+│  • Statistics Retrieval             │
+│  • Log Streaming                    │
+└─────────────────────────────────────┘
+```
+
+### Required API Endpoints
+
+#### Authentication & User Management
+
+```
+POST   /api/auth/register          # User registration
+POST   /api/auth/login             # User login (returns JWT token)
+POST   /api/auth/logout            # User logout
+GET    /api/auth/me                # Get current user info
+POST   /api/auth/refresh           # Refresh JWT token
+```
+
+#### Bot Control
+
+```
+POST   /api/bot/start              # Start AdBot for current user
+POST   /api/bot/stop               # Stop AdBot for current user
+GET    /api/bot/status             # Get bot status (running/stopped)
+GET    /api/bot/health             # Get system health
+```
+
+#### Session Management
+
+```
+GET    /api/sessions               # List all sessions for current user
+POST   /api/sessions               # Add session (upload .session file)
+GET    /api/sessions/{id}          # Get session details
+DELETE /api/sessions/{id}          # Remove session
+POST   /api/sessions/{id}/refresh  # Refresh session status
+GET    /api/sessions/{id}/health   # Check session health
+```
+
+#### Group Management
+
+```
+GET    /api/groups                 # List all groups for current user
+POST   /api/groups                 # Add group(s)
+DELETE /api/groups/{id}            # Remove group
+GET    /api/groups/{id}/stats      # Get group statistics
+POST   /api/groups/import          # Import groups from file/chatlist
+```
+
+#### Statistics & Reports
+
+```
+GET    /api/stats                  # Get user statistics
+GET    /api/stats/accounts         # Get per-account statistics
+GET    /api/stats/groups           # Get per-group statistics
+GET    /api/stats/summary          # Get statistics summary
+GET    /api/stats/export           # Export statistics (CSV/JSON)
+```
+
+#### Logs
+
+```
+GET    /api/logs                   # Get logs (paginated)
+GET    /api/logs/{date}            # Get logs for specific date
+GET    /api/logs/stream            # Stream logs (WebSocket/SSE)
+GET    /api/logs/errors            # Get error logs only
+```
+
+#### Configuration
+
+```
+GET    /api/config                 # Get user configuration
+PUT    /api/config                 # Update user configuration
+GET    /api/config/post-links      # Get post links
+POST   /api/config/post-links      # Add post link
+DELETE /api/config/post-links/{id} # Remove post link
+```
+
+### API Response Formats
+
+**Success Response**:
+```json
+{
+  "success": true,
+  "data": { ... },
+  "message": "Operation successful"
+}
+```
+
+**Error Response**:
+```json
+{
+  "success": false,
+  "error": {
+    "code": "SESSION_NOT_FOUND",
+    "message": "Session with ID 123 not found",
+    "details": { ... }
+  }
+}
+```
+
+### Frontend Integration Example
+
+**Next.js API Routes** (Proxy to Backend):
+
+```typescript
+// pages/api/bot/status.ts
+import { getServerSession } from 'next-auth';
+
+export default async function handler(req, res) {
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) return res.status(401).json({ error: 'Unauthorized' });
+
+  const response = await fetch(`${process.env.ADBOT_API_URL}/api/bot/status`, {
+    headers: {
+      'Authorization': `Bearer ${session.accessToken}`,
+    },
+  });
+
+  const data = await response.json();
+  return res.status(200).json(data);
+}
+```
+
+**React Components**:
+
+```typescript
+// components/Dashboard.tsx
+export default function Dashboard() {
+  const [status, setStatus] = useState('stopped');
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    // Fetch bot status
+    fetch('/api/bot/status')
+      .then(res => res.json())
+      .then(data => setStatus(data.status));
+
+    // Fetch statistics
+    fetch('/api/stats/summary')
+      .then(res => res.json())
+      .then(data => setStats(data));
+  }, []);
+
+  const handleStart = async () => {
+    await fetch('/api/bot/start', { method: 'POST' });
+    setStatus('running');
+  };
+
+  return (
+    <div>
+      <h1>AdBot Dashboard</h1>
+      <p>Status: {status}</p>
+      <button onClick={handleStart}>Start Bot</button>
+      {stats && <Statistics data={stats} />}
+    </div>
+  );
+}
+```
+
+### Real-Time Updates
+
+**WebSocket/Server-Sent Events (SSE)**:
+
+```typescript
+// components/LogStream.tsx
+export default function LogStream() {
+  const [logs, setLogs] = useState([]);
+
+  useEffect(() => {
+    const eventSource = new EventSource('/api/logs/stream');
+    eventSource.onmessage = (event) => {
+      const log = JSON.parse(event.data);
+      setLogs(prev => [...prev, log]);
+    };
+    return () => eventSource.close();
+  }, []);
+
+  return (
+    <div>
+      {logs.map(log => (
+        <div key={log.id}>{log.message}</div>
+      ))}
+    </div>
+  );
+}
+```
+
+### Authentication & User Isolation
+
+**Backend Enforcement**:
+
+```python
+# API middleware example (FastAPI)
+@app.middleware("http")
+async def authenticate_request(request: Request, call_next):
+    token = request.headers.get("Authorization")
+    if not token:
+        return JSONResponse({"error": "Unauthorized"}, status_code=401)
+    
+    user = verify_jwt_token(token)
+    if not user:
+        return JSONResponse({"error": "Invalid token"}, status_code=401)
+    
+    request.state.user = user
+    response = await call_next(request)
+    return response
+
+# Example endpoint with user isolation
+@app.get("/api/sessions")
+async def get_sessions(request: Request):
+    user_id = request.state.user.id
+    sessions = get_sessions_for_user(user_id)  # Only user's sessions
+    return {"sessions": sessions}
+```
+
+**Frontend Auth** (NextAuth.js):
+
+```typescript
+// pages/api/auth/[...nextauth].ts
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+
+export default NextAuth({
+  providers: [
+    CredentialsProvider({
+      async authorize(credentials) {
+        const res = await fetch(`${process.env.ADBOT_API_URL}/api/auth/login`, {
+          method: 'POST',
+          body: JSON.stringify(credentials),
+        });
+        const user = await res.json();
+        if (user) return user;
+        return null;
+      },
+    }),
+  ],
+});
+```
+
+### Implementation Steps
+
+1. **Create API Server**:
+   - Choose framework (FastAPI recommended for async support)
+   - Set up authentication middleware
+   - Create endpoint stubs
+
+2. **Integrate with AdBot Core**:
+   - Refactor `main.py` to support API calls
+   - Add user context to all functions
+   - Create service layer for business logic
+
+3. **Build Frontend**:
+   - Set up Next.js project
+   - Create API routes (proxy to backend)
+   - Build UI components (dashboard, sessions, groups, stats)
+   - Add real-time updates (WebSocket/SSE)
+
+4. **Testing**:
+   - Test API endpoints
+   - Test user isolation
+   - Test frontend-backend integration
+
+---
+
+## Recommended Improvements
+
+### 1. Folder Naming Improvements
+
+**Current Issues**:
+- `advert/` folder name is unclear (contains only `_others/`)
+- Root directory mixes produ

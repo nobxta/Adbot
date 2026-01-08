@@ -1,0 +1,242 @@
+2025-12-22 01:53:39,930 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getMe "HTTP/1.1 200 OK"
+2025-12-22 01:53:39,932 - telegram.ext.Application - INFO - Application started
+2025-12-22 01:53:40,102 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/deleteWebhook "HTTP/1.1 200 OK"
+2025-12-22 01:53:40,103 - __main__ - INFO - Controller bot started. Press Ctrl+C to stop.
+2025-12-22 01:53:40,631 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:53:40,874 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:53:40,995 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:53:41,360 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:53:41,726 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:53:42,808 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:53:43,162 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-12-22 01:53:43,163 - __main__ - INFO - Adbot worker started by controller
+2025-12-22 01:53:43,165 - __main__ - INFO - Found 10 session files
+2025-12-22 01:53:43,165 - __main__ - INFO - Initializing 10 clients...
+2025-12-22 01:53:43,556 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/editMessageText "HTTP/1.1 200 OK"
+2025-12-22 01:53:43,942 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:53:44,173 - __main__ - INFO - Initialized client for session +254708803721 (disconnected)
+2025-12-22 01:53:45,085 - __main__ - INFO - Initialized client for session +254718326513 (disconnected)
+2025-12-22 01:53:46,184 - __main__ - INFO - Initialized client for session +254724415790 (disconnected)
+2025-12-22 01:53:47,128 - __main__ - INFO - Initialized client for session +254727162683 (disconnected)
+2025-12-22 01:53:48,252 - __main__ - INFO - Initialized client for session +254741795774 (disconnected)
+2025-12-22 01:53:49,177 - __main__ - INFO - Initialized client for session +254742982807 (disconnected)
+2025-12-22 01:53:50,099 - __main__ - WARNING - Session +254743167707 is not authorized. Please login first.
+2025-12-22 01:53:51,128 - __main__ - INFO - Initialized client for session +254758678951 (disconnected)
+2025-12-22 01:53:52,053 - __main__ - INFO - Initialized client for session +254768741010 (disconnected)
+2025-12-22 01:53:52,987 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:53:53,096 - __main__ - INFO - Initialized client for session +254799668603 (disconnected)
+2025-12-22 01:53:53,096 - __main__ - INFO - Successfully initialized 9 clients
+2025-12-22 01:53:53,096 - __main__ - INFO - Account 1: 9 groups assigned
+2025-12-22 01:53:53,096 - __main__ - INFO - Account 2: 9 groups assigned
+2025-12-22 01:53:53,097 - __main__ - INFO - Account 3: 8 groups assigned
+2025-12-22 01:53:53,097 - __main__ - INFO - Account 4: 8 groups assigned
+2025-12-22 01:53:53,097 - __main__ - INFO - Account 5: 8 groups assigned
+2025-12-22 01:53:53,097 - __main__ - INFO - Account 6: 8 groups assigned
+2025-12-22 01:53:53,097 - __main__ - INFO - Account 7: 8 groups assigned
+2025-12-22 01:53:53,097 - __main__ - INFO - Account 8: 8 groups assigned
+2025-12-22 01:53:53,097 - __main__ - INFO - Account 9: 8 groups assigned
+2025-12-22 01:53:53,098 - __main__ - INFO - Starting forwarding cycle. Selected post: t.me/HqAdzz/6 (from 1 available)
+2025-12-22 01:53:54,425 - __main__ - ERROR - Account 1: Failed to get entity -1001515812972: Could not find the input entity for PeerChannel(channel_id=1001515812972) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:53:54,425 - __main__ - INFO - Account1 — Failed in -1001515812972 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:53:55,488 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:01,106 - __main__ - ERROR - Account 1: Failed to get entity -1001341539429: Could not find the input entity for PeerChannel(channel_id=1001341539429) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:01,107 - __main__ - INFO - Account1 — Failed in -1001341539429 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:01,796 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:03,165 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:54:07,370 - __main__ - ERROR - Account 1: Failed to get entity -1001728558528: Could not find the input entity for PeerChannel(channel_id=1001728558528) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:07,370 - __main__ - INFO - Account1 — Failed in -1001728558528 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:08,356 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:13,343 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:54:14,016 - __main__ - ERROR - Account 1: Failed to get entity -1001441174367: Could not find the input entity for PeerChannel(channel_id=1001441174367) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:14,016 - __main__ - INFO - Account1 — Failed in -1001441174367 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:14,740 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:20,312 - __main__ - ERROR - Account 1: Failed to get entity -1001545483802: Could not find the input entity for PeerChannel(channel_id=1001545483802) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:20,312 - __main__ - INFO - Account1 — Failed in -1001545483802 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:21,036 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:23,521 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:54:26,598 - __main__ - ERROR - Account 1: Failed to get entity -1001901592139: Could not find the input entity for PeerChannel(channel_id=1001901592139) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:26,599 - __main__ - INFO - Account1 — Failed in -1001901592139 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:27,574 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:33,176 - __main__ - ERROR - Account 1: Failed to get entity -1001724337713: Could not find the input entity for PeerChannel(channel_id=1001724337713) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:33,177 - __main__ - INFO - Account1 — Failed in -1001724337713 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:33,701 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:54:33,894 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:39,461 - __main__ - ERROR - Account 1: Failed to get entity -1001945309702: Could not find the input entity for PeerChannel(channel_id=1001945309702) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:39,461 - __main__ - INFO - Account1 — Failed in -1001945309702 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:40,195 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:43,880 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 01:54:45,768 - __main__ - ERROR - Account 1: Failed to get entity -1001527317789: Could not find the input entity for PeerChannel(channel_id=1001527317789) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 01:54:45,769 - __main__ - INFO - Account1 — Failed in -1001527317789 | Could not find the input entity for PeerChannel(ch
+2025-12-22 01:54:46,532 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 01:54:49,082 - __main__ - INFO - Received signal 2. Initiating graceful shutdown...
+2025-12-22 01:54:49,083 - __main__ - INFO - Shutdown signal received
+2025-12-22 01:54:49,083 - __main__ - INFO - Cleaning up resources...
+2025-12-22 01:54:49,083 - __main__ - INFO - Stopping worker task...
+2025-12-22 01:54:49,083 - __main__ - INFO - Adbot worker cancelled
+2025-12-22 01:54:49,087 - __main__ - INFO - Shutting down controller bot...
+2025-12-22 01:54:49,088 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-12-22 01:54:49,088 - telegram.ext.Application - INFO - Application.stop() complete
+2025-12-22 01:54:49,090 - __main__ - ERROR - Error shutting down controller bot: This Updater is still running!
+2025-12-22 01:54:49,090 - __main__ - INFO - Cleanup complete
+2025-12-22 01:54:49,090 - __main__ - INFO - Cancelling 2 pending tasks...
+2025-12-22 01:54:49,126 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-1007' coro=<Updater._start_polling.<locals>.polling_action_cb() done, defined at C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py:338> exception=NetworkError('httpx.ReadError: ')>
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 394, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\connection_pool.py", line 256, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\connection_pool.py", line 236, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\connection.py", line 103, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 136, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 106, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 177, in _receive_response_headers
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 217, in _receive_event
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_backends\anyio.py", line 32, in read
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 162, in __exit__
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+httpcore.ReadError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 279, in do_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1540, in request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1629, in send
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1657, in _send_handling_auth
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1694, in _send_handling_redirects
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1730, in _send_single_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 393, in handle_async_request
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 162, in __exit__
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+httpx.ReadError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 676, in get_updates
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4780, in get_updates
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 303, in do_request
+telegram.error.NetworkError: httpx.ReadError: 
+2025-12-22 02:00:04,320 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getMe "HTTP/1.1 200 OK"
+2025-12-22 02:00:04,322 - telegram.ext.Application - INFO - Application started
+2025-12-22 02:00:04,491 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/deleteWebhook "HTTP/1.1 200 OK"
+2025-12-22 02:00:04,493 - __main__ - INFO - Controller bot started. Press Ctrl+C to stop.
+2025-12-22 02:00:07,695 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 02:00:08,057 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:09,469 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 02:00:09,813 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/answerCallbackQuery "HTTP/1.1 200 OK"
+2025-12-22 02:00:09,814 - __main__ - INFO - Adbot worker started by controller
+2025-12-22 02:00:09,817 - __main__ - INFO - Found 10 session files
+2025-12-22 02:00:09,817 - __main__ - INFO - Initializing 10 clients...
+2025-12-22 02:00:10,293 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/editMessageText "HTTP/1.1 200 OK"
+2025-12-22 02:00:10,673 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:10,832 - __main__ - INFO - Initialized client for session +254708803721 (disconnected)
+2025-12-22 02:00:11,741 - __main__ - INFO - Initialized client for session +254718326513 (disconnected)
+2025-12-22 02:00:12,377 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 02:00:12,664 - __main__ - INFO - Initialized client for session +254724415790 (disconnected)
+2025-12-22 02:00:12,736 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:13,626 - __main__ - INFO - Initialized client for session +254727162683 (disconnected)
+2025-12-22 02:00:14,671 - __main__ - INFO - Initialized client for session +254741795774 (disconnected)
+2025-12-22 02:00:15,606 - __main__ - INFO - Initialized client for session +254742982807 (disconnected)
+2025-12-22 02:00:16,556 - __main__ - WARNING - Session +254743167707 is not authorized. Please login first.
+2025-12-22 02:00:17,526 - __main__ - INFO - Initialized client for session +254758678951 (disconnected)
+2025-12-22 02:00:18,501 - __main__ - INFO - Initialized client for session +254768741010 (disconnected)
+2025-12-22 02:00:19,540 - __main__ - INFO - Initialized client for session +254799668603 (disconnected)
+2025-12-22 02:00:19,540 - __main__ - INFO - Successfully initialized 9 clients
+2025-12-22 02:00:19,540 - __main__ - INFO - Account 1: 9 groups assigned
+2025-12-22 02:00:19,540 - __main__ - INFO - Account 2: 9 groups assigned
+2025-12-22 02:00:19,540 - __main__ - INFO - Account 3: 8 groups assigned
+2025-12-22 02:00:19,541 - __main__ - INFO - Account 4: 8 groups assigned
+2025-12-22 02:00:19,541 - __main__ - INFO - Account 5: 8 groups assigned
+2025-12-22 02:00:19,541 - __main__ - INFO - Account 6: 8 groups assigned
+2025-12-22 02:00:19,541 - __main__ - INFO - Account 7: 8 groups assigned
+2025-12-22 02:00:19,541 - __main__ - INFO - Account 8: 8 groups assigned
+2025-12-22 02:00:19,541 - __main__ - INFO - Account 9: 8 groups assigned
+2025-12-22 02:00:19,542 - __main__ - INFO - Starting forwarding cycle. Selected post: t.me/HqAdzz/6 (from 1 available)
+2025-12-22 02:00:20,844 - __main__ - ERROR - Account 1: Failed to get entity -1001515812972: Could not find the input entity for PeerChannel(channel_id=1001515812972) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 02:00:20,844 - __main__ - INFO - Account1 — Failed in -1001515812972 | Could not find the input entity for PeerChannel(ch
+2025-12-22 02:00:21,607 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:22,564 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 02:00:27,226 - __main__ - ERROR - Account 1: Failed to get entity -1001341539429: Could not find the input entity for PeerChannel(channel_id=1001341539429) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 02:00:27,226 - __main__ - INFO - Account1 — Failed in -1001341539429 | Could not find the input entity for PeerChannel(ch
+2025-12-22 02:00:28,404 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:32,747 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 02:00:34,011 - __main__ - ERROR - Account 1: Failed to get entity -1001728558528: Could not find the input entity for PeerChannel(channel_id=1001728558528) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 02:00:34,012 - __main__ - INFO - Account1 — Failed in -1001728558528 | Could not find the input entity for PeerChannel(ch
+2025-12-22 02:00:34,736 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:40,330 - __main__ - ERROR - Account 1: Failed to get entity -1001441174367: Could not find the input entity for PeerChannel(channel_id=1001441174367) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 02:00:40,331 - __main__ - INFO - Account1 — Failed in -1001441174367 | Could not find the input entity for PeerChannel(ch
+2025-12-22 02:00:41,042 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:42,933 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getUpdates "HTTP/1.1 200 OK"
+2025-12-22 02:00:46,645 - __main__ - ERROR - Account 1: Failed to get entity -1001545483802: Could not find the input entity for PeerChannel(channel_id=1001545483802) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2025-12-22 02:00:46,646 - __main__ - INFO - Account1 — Failed in -1001545483802 | Could not find the input entity for PeerChannel(ch
+2025-12-22 02:00:47,334 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/sendMessage "HTTP/1.1 200 OK"
+2025-12-22 02:00:49,762 - __main__ - INFO - Received signal 2. Initiating graceful shutdown...
+2025-12-22 02:00:49,762 - __main__ - INFO - Shutdown signal received
+2025-12-22 02:00:49,762 - __main__ - INFO - Cleaning up resources...
+2025-12-22 02:00:49,763 - __main__ - INFO - Stopping worker task...
+2025-12-22 02:00:49,763 - __main__ - INFO - Adbot worker cancelled
+2025-12-22 02:00:49,767 - __main__ - INFO - Shutting down controller bot...
+2025-12-22 02:00:49,767 - telegram.ext.Application - INFO - Application is stopping. This might take a moment.
+2025-12-22 02:00:49,767 - telegram.ext.Application - INFO - Application.stop() complete
+2025-12-22 02:00:49,769 - __main__ - ERROR - Error shutting down controller bot: This Updater is still running!
+2025-12-22 02:00:49,769 - __main__ - INFO - Cleanup complete
+2025-12-22 02:00:49,769 - __main__ - INFO - Cancelling 2 pending tasks...
+2025-12-22 02:00:49,798 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-619' coro=<Updater._start_polling.<locals>.polling_action_cb() done, defined at C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py:338> exception=NetworkError('httpx.ReadError: ')>
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 394, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\connection_pool.py", line 256, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\connection_pool.py", line 236, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\connection.py", line 103, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 136, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 106, in handle_async_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 177, in _receive_response_headers
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_async\http11.py", line 217, in _receive_event
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_backends\anyio.py", line 32, in read
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 162, in __exit__
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+httpcore.ReadError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 279, in do_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1540, in request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1629, in send
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1657, in _send_handling_auth
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1694, in _send_handling_redirects
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_client.py", line 1730, in _send_single_request
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 393, in handle_async_request
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.2544.0_x64__qbz5n2kfra8p0\Lib\contextlib.py", line 162, in __exit__
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+httpx.ReadError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_updater.py", line 340, in polling_action_cb
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 676, in get_updates
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 4780, in get_updates
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 703, in _post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\ext\_extbot.py", line 372, in _do_post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\_bot.py", line 732, in _do_post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 198, in post
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_baserequest.py", line 305, in _request_wrapper
+  File "C:\Users\NCS\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\LocalCache\local-packages\Python313\site-packages\telegram\request\_httpxrequest.py", line 303, in do_request
+telegram.error.NetworkError: httpx.ReadError: 
+2025-12-22 02:11:15,030 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getMe "HTTP/1.1 200 OK"
+2025-12-22 02:11:15,032 - telegram.ext.Application - INFO - Application started
+2025-12-22 02:11:15,207 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/deleteWebhook "HTTP/1.1 200 OK"
+2025-12-22 02:11:15,209 - __main__ - INFO - Controller bot started. Press Ctrl+C to stop.
+2025-12-22 17:32:57,263 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/getMe "HTTP/1.1 200 OK"
+2025-12-22 17:32:57,265 - __main__ - INFO - Controller bot started. Press Ctrl+C to stop.
+2025-12-22 17:32:57,444 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot6546099428:AAGJqeKsg0DLHKTKIZsVZwVZVNSqbOZjO48/deleteWebhook "HTTP/1.1 200 OK"
+2025-12-22 17:32:57,448 - telegram.ext.Application - INFO - Application started

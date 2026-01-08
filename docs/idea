@@ -1,0 +1,283 @@
+
+## Telegram Adbot Automation Platform: Comprehensive Roadmap
+
+This document outlines the features, user flows, and technical considerations for your Telegram Adbot automation platform, designed to sell automation bots, primarily focusing on the Adbot service. The platform will cater to individual users, resellers, and administrators, offering a seamless experience from purchase to bot management.
+
+---
+
+### 1. Platform Overview
+
+The platform is a web-based and Telegram-bot integrated system for selling and managing Telegram automation tools. Its core product is the "Adbot," an automated advertising solution for Telegram.
+
+Core Services:
+
+* Adbot: Automated forwarding of Telegram channel posts to multiple marketplace groups.
+* Telegram Account Sales: Provision of Telegram accounts with OTP reading functionality for user login.
+
+Key User Roles:
+
+* User: Individuals or businesses purchasing and managing Adbots for their own advertising needs.
+* Reseller: Partners who can purchase Adbot services at a discounted rate and resell them to their own clients.
+* Admin (You): Full control over the platform, managing users, resellers, products, stock, and overall operations.
+
+---
+
+### 2. User Experience (UX) & Website Structure
+
+The website will be responsive, ensuring optimal viewing and functionality on both mobile and desktop devices.
+
+#### 2.1. Public-Facing Website (Landing Page & General Info)
+
+* Landing Page:
+    * Hero Section: Catchy headline, clear value proposition of Adbot.
+    * Adbot Features: Detailed explanation of what Adbot does, its benefits, and how it automates Telegram advertising.
+    * How It Works: Step-by-step guide on setting up and using Adbot.
+    * Client Reviews/Testimonials: Social proof to build trust.
+    * FAQs: Common questions and answers about Adbot.
+* Navigation Bar (Navbar):
+    * Pricing: Direct link to the pricing plans section.
+    * More Products: Showcase other Telegram automation tools (e.g., Telegram account sessions).
+    * Terms: Legal terms and conditions of service.
+    * Login: Access point for user and reseller dashboards.
+
+#### 2.2. Login & Authentication
+
+* Login Button: Clicking this will prompt for a "Secret Token."
+* Secret Token: This token serves as the unique access key for a user's Adbot dashboard. It's provided upon successful purchase.
+* Forgot Token/URL:
+    * Users can request a new token if forgotten.
+    * System will prompt them to select which Adbot plan they wish to recover (if multiple plans purchased under the same email).
+    * A new token/direct URL will be sent to their registered email address.
+
+#### 2.3. User Dashboard (Adbot Controller Panel)
+
+Accessible after entering the Secret Token.
+
+* Sidebar Navigation:
+    * Dashboard: Main overview of Adbot activity.
+    * Edit Adbot Profile: (Potentially) For managing settings specific to their Adbot instance, if applicable.
+    * History: Logs of Adbot activity (e.g., messages sent, status changes).
+    * Settings: Adbot specific settings (e.g., posting frequency).
+    * Notifications: Icon for important alerts (e.g., account ban, promotions).
+* Dashboard Main Area:
+    * Adbot Status: Displays "Start" button when stopped, "Stop" button when running.
+    * Real-time Metrics (Displayed when running):
+        * Total messages sent (overall).
+        * Total failed messages (overall).
+        * Messages sent this week.
+        * Plan validity (days remaining).
+        * Estimated traffic on the Adbot account.
+        * Overall performance stats and logs.
+    * Actionable Elements (when running):
+        * Post Link Input: User enters the public Telegram channel post link.
+        * Post Link Validation: Instant verification ("Post Verified" or "Invalid Post Link").
+        * Group Type Selection: Dropdown/radio buttons for categories (Instagram Marketplace, Instagram, Telegram, Fraud Discussion Groups, Developer Market).
+        * Run/Stop Button: Initiates or halts Adbot operation.
+        * Adbot Logs: Link to view live logs of Adbot activity.
+    * Account Ban & Replacement System:
+
+Nobi, [15-07-2025 07:25 PM]
+* Notification: Prominent alert if an Adbot account is banned: "Your AdBot account has been banned by Telegram. Please replace it. Your subscription is still active. You must buy a new account within 7 days or your AdBot access will be terminated by moderators."
+        * "Add New Account" Button: Clicking this leads to a checkout page.
+        * Checkout for Replacement: Calculates charges based on the number of banned accounts under the user's current plan.
+        * Confirmation Email: Sent after successful payment for replacement accounts.
+
+---
+
+### 3. Pricing & Plans
+
+Two main categories of plans, with clear distinctions for target users.
+
+#### 3.1. "Starter Plans (For Solo Sellers & New Users)"
+
+* Bronze – $30
+    * 1 Account
+    * Sends every 1 hour
+* Silver – $55
+    * 2 Accounts
+    * Sends every 30 minutes
+* Gold – $80
+    * 3 Accounts
+    * Sends every 20 minutes
+* Diamond – $160
+    * 6 Accounts
+    * Sends every 10 minutes
+
+#### 3.2. "Enterprise Plans (For High-Volume Marketing)"
+
+* Basic – $50/week or $199/month
+    * 3 Accounts
+    * 15-Minute Interval
+* Pro – $150/week or $450/month
+    * 7 Accounts
+    * 7-Minute Interval
+* Elite – $320/week or $899/month
+    * 15 Accounts
+    * 2-Minute Interval
+
+---
+
+### 4. Purchase & Onboarding Flow
+
+This is a critical flow that needs to be smooth and automated.
+
+1.  User Selects Plan: Clicks on a desired plan on the pricing page.
+2.  Email ID Prompt: Backend requests the user's email address.
+3.  Checkout Page:
+    * Displays selected plan name, details, and total amount.
+    * Confirms user's email address (where details will be sent).
+    * "Pay [Amount]" button.
+4.  Payment Gateway Integration (NowPayments):
+    * Crypto Payment Instructions:
+        * Choose your plan (already done).
+        * Select a cryptocurrency (BTC, ETH, SOL, LTC, USDT).
+        * Get payment address instantly (unique wallet address and exact amount generated).
+        * Send the payment (user sends from their wallet app).
+        * Confirm your payment ("I’ve Paid" button).
+    * Important Note: "Do not refresh or close this page during payment. Each address is unique to your order and expires after a short time."
+5.  Backend Payment Verification: System checks for payment confirmation.
+6.  Adbot Creation (Automated):
+    * Database Entry: Saves user's API ID and API Hash (from stocked accounts).
+    * Session Assignment: An unused Telegram account session from your stock is assigned to the user.
+    * Instance Creation: A unique Adbot instance is created for the user.
+    * Immediate Activation: The Adbot is activated for the user.
+7.  Information Delivery to User:
+    * Email 1 (Purchase Confirmation & Access):
+        * Secret Token: The unique key to access their Adbot dashboard.
+        * Direct URL: A personalized URL to directly open their Adbot dashboard.
+        * Purchase details (plan, price, next billing cycle).
+    * Email 2 (Invoice): A detailed invoice for the purchase.
+
+---
+
+### 5. Subscription Management & Renewal
+
+* Renewal Notification: 48 hours before validity ends, an email is sent to the user reminding them to renew.
+* Post-Expiry Access: If a user tries to access their Adbot after validity ends, a renewal notification will pop up on the dashboard, preventing access until renewed.
+* Session Release: Upon subscription expiry, the Adbot session associated with the user will be released back to the "unused sessions" pool for reallocation.
+
+---
+
+### 6. Admin Panel (Your Control Center)
+
+This is your backend for managing the entire platform.
+
+* Dashboard:
+    * Total Sales (overall and specific periods).
+    * Number of Active Adbots.
+    * Revenue tracking.
+    * Quick overview of system health.
+* Adbot Management:
+    * List all bought Adbots (without needing a token).
+    * View details of each Adbot (user, plan, status, validity).
+    * Ability to start/stop, edit, or manage individual Adbots.
+* User Management:
+    * List all normal users.
+    * View user details, purchased plans, and activity.
+    * Manage user accounts (e.g., suspend, reset token).
+
+
+* Reseller Management:
+    * List all registered resellers.
+    * View reseller sales, active subscriptions by their clients.
+    * Manage reseller accounts.
+* Product Management:
+    * Manage Adbot plans (edit pricing, features).
+    * Manage other products (e.g., Telegram account sessions).
+* Adbot Account Stock Management:
+    * Stock Overview: Total Adbot accounts in stock, in use, unused stock.
+    * Load More Stock: Interface to upload new Telegram account sessions (API ID, API Hash). This is crucial for enabling new Adbot sales.
+* Notifications & Promotions:
+    * Ability to send promotional notifications or important service updates to users and/or resellers.
+    * Alerts for system issues (e.g., low stock).
+
+---
+
+### 7. Reseller Panel
+
+Resellers will have a dedicated interface to manage their clients and sales.
+
+* Dashboard:
+    * Total Sales generated by the reseller.
+    * Total Active Subscriptions managed by the reseller.
+    * History of user subscriptions created by the reseller.
+* Create Bots for Users:
+    * Reseller selects a plan (at 50% discounted rate).
+    * Reseller pays for the plan.
+    * Reseller enters client details (email, etc.).
+    * The Adbot is created for the reseller's client, and access details are sent to the client.
+* Manage Client Bots: Reseller can view and manage all Adbots they have created for their clients.
+
+---
+
+### 8. Telegram Shop Bot Integration
+
+Extending the sales and management capabilities to Telegram itself.
+
+* `/start` Command:
+    * Buttons:
+        * "See Plans"
+        * "How It Works"
+        * "Check Website" (Link to your main site)
+        * "Contact Support"
+* "See Plans" Flow:
+    * Buttons: "Starter" or "Enterprises"
+    * User selects a category.
+    * User selects a specific plan.
+    * Bot asks for user's email ID.
+    * Payment Integration: Similar to the website, directs to NowPayments for crypto payment.
+    * Upon successful payment, the bot will send the Secret Token and Direct URL in the chat, in addition to emailing them.
+* Adbot Control from Bot:
+    * Users can initiate/stop their Adbot directly from the Telegram bot (requires linking their account/token with the bot).
+
+---
+
+### 9. Technical Considerations (High-Level)
+
+* Backend Language/Framework: (e.g., Python/Django, Node.js/Express, PHP/Laravel) for handling logic, database interactions, and API integrations.
+* Database: (e.g., PostgreSQL, MySQL, MongoDB) to store user data, plan details, Adbot configurations, session data, and transaction logs.
+* Telegram API Integration: Crucial for Adbot functionality (sending messages, managing accounts, reading OTPs) and the Telegram shop bot.
+* Payment Gateway API: Integration with NowPayments for crypto transactions.
+* Email Service: (e.g., SendGrid, Mailgun) for sending tokens, invoices, renewal notices, and ban notifications.
+* Session Management: Robust system for managing Telegram account sessions, associating them with user Adbots, and rotating them upon expiry or ban.
+* Scalability: Design the architecture to handle a growing number of users and Adbot instances.
+* Security: Implement strong security measures for user data, payments, and API keys.
+* Logging & Monitoring: Comprehensive logging for Adbot activity, payment status, and system health.
+* Frontend Technologies: (e.g., React, Vue, Angular) for building interactive user interfaces.
+
+---
+
+### 10. Development Phases (Suggested)
+
+1.  Phase 1: Core Adbot Functionality & User Purchase Flow
+    * Landing page, pricing, and basic information.
+    * User registration/email capture.
+    * NowPayments integration for single plan purchase.
+    * Automated Adbot instance creation and session assignment.
+    * Email delivery of token and URL.
+    * Basic user dashboard (start/stop, total sent/failed).
+2.  Phase 2: Advanced User Dashboard & Adbot Features
+    * Post link validation, group type selection.
+    * Live logs, detailed metrics.
+    * Account ban detection and replacement system.
+    * Settings for Adbot (e.g., frequency).
+    * Forgot token/URL functionality.
+3.
+
+Phase 3: Admin Panel & Stock Management
+    * Comprehensive admin dashboard.
+    * User and Adbot management features.
+    * Stock loading and management.
+    * Promotional notification system.
+4.  Phase 4: Reseller Panel
+    * Reseller login and dashboard.
+    * Ability to create bots for their clients.
+    * Reseller specific reporting.
+5.  Phase 5: Telegram Shop Bot & Other Products
+    * Full Telegram bot integration for sales and control.
+    * "More Products" section for selling Telegram account sessions (with OTP reading).
+6.  Phase 6: Optimization & Polish
+    * Performance optimization.
+    * Extensive testing and bug fixing.
+    * UI/UX refinements.
+    * Scalability improvements.
